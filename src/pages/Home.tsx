@@ -7,7 +7,7 @@ import {
   Scale, Landmark, Briefcase, Users, ChevronDown,
   ArrowRight, Quote
 } from 'lucide-react';
-import FluidShader from '@/components/FluidShader';
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,23 +31,38 @@ function HeroSection() {
 
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden" style={{ marginTop: '-64px', paddingTop: '64px' }}>
-      <FluidShader />
-      <div ref={contentRef} className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 py-20 w-full">
-        <div ref={cardRef} className="glass-card-dark p-8 md:p-12 max-w-[680px] opacity-0">
-          <p className="hero-eyebrow eyebrow mb-4 opacity-0">Trusted Managed IT Services -- United Kingdom</p>
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          key="/8439150-uhd_3840_2160_25fps.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/abstract-tech-bg.jpg"
+          className="w-full h-full object-cover object-top"
+        >
+          <source src="/8439150-uhd_3840_2160_25fps.mp4" type="video/mp4" />
+        </video>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-[#1A2332]/40" />
+      </div>
+      <div ref={contentRef} className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 py-12 md:py-20 w-full -translate-y-6 md:-translate-y-12">
+        <div ref={cardRef} className="glass-card-dark p-6 md:p-10 max-w-[600px] opacity-0">
+          <p className="hero-eyebrow eyebrow mb-4 opacity-0">Trusted Managed IT Services, United Kingdom</p>
           <h1 className="hero-headline text-white font-bold mb-6" style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
-            <span className="inline-block opacity-0">Technology </span>
-            <span className="inline-block opacity-0">that </span>
+            <span className="inline-block opacity-0">Technology</span>{' '}
+            <span className="inline-block opacity-0">that</span>{' '}
             <span className="inline-block opacity-0" style={{ color: '#00B4D8' }}>works</span>
-            <span className="inline-block opacity-0">. </span>
+            <span className="inline-block opacity-0">.</span>
             <br className="hidden sm:block" />
-            <span className="inline-block opacity-0">Business </span>
-            <span className="inline-block opacity-0">that </span>
+            <span className="inline-block opacity-0">Business</span>{' '}
+            <span className="inline-block opacity-0">that</span>{' '}
             <span className="inline-block opacity-0" style={{ color: '#00B4D8' }}>grows</span>
             <span className="inline-block opacity-0">.</span>
           </h1>
           <p className="hero-sub text-white/80 text-base md:text-lg mb-8 max-w-[540px] opacity-0" style={{ lineHeight: 1.6 }}>
-            Amarjnet is your dedicated managed IT partner -- delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to UK businesses that demand more from their technology.
+            Amarjnet is your dedicated managed IT partner, delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to UK businesses that demand more from their technology.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <Link to="/contact" className="hero-cta btn-primary opacity-0">Get a Free IT Review</Link>
@@ -129,10 +144,10 @@ function StatsSection() {
 /* ─── Services Overview ─── */
 const services = [
   { icon: Monitor, title: 'Managed IT Support', headline: 'Always-on support. Zero surprises.', body: 'Proactive monitoring, fast helpdesk, and predictable fixed-fee contracts. IT that just works.' },
-  { icon: Shield, title: 'Cybersecurity', headline: 'Defend. Detect. Recover.', body: 'Layered security from endpoint to email -- plus Cyber Essentials certification support.' },
+  { icon: Shield, title: 'Cybersecurity', headline: 'Defend. Detect. Recover.', body: 'Layered security from endpoint to email, plus Cyber Essentials certification support.' },
   { icon: Cloud, title: 'Cloud & Microsoft 365', headline: 'Move forward. Move to the cloud.', body: 'Microsoft 365, Azure, and cloud migrations managed by certified experts.' },
   { icon: Network, title: 'Networking & Infrastructure', headline: 'The backbone of your business.', body: 'Firewalls, Wi-Fi, SD-WAN, and infrastructure built for performance and security.' },
-  { icon: FileCheck, title: 'Compliance', headline: 'Compliant by design.', body: 'GDPR, Cyber Essentials Plus, FCA-aligned IT -- built for regulated industries.' },
+  { icon: FileCheck, title: 'Compliance', headline: 'Compliant by design.', body: 'GDPR, Cyber Essentials Plus, FCA-aligned IT. Built for regulated industries.' },
 ];
 
 function ServicesSection() {
@@ -157,7 +172,7 @@ function ServicesSection() {
             End-to-end IT services. One trusted partner.
           </h2>
           <p className="max-w-[640px] mx-auto" style={{ color: 'rgba(26,35,50,0.7)', fontSize: '16px', lineHeight: 1.6 }}>
-            From day-to-day helpdesk support to strategic cloud transformation -- Amarjnet delivers the full spectrum of managed IT services your business needs to stay secure, productive, and ahead.
+            From day-to-day helpdesk support to strategic cloud transformation, Amarjnet delivers the full spectrum of managed IT services your business needs to stay secure, productive, and ahead.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -184,7 +199,7 @@ function ServicesSection() {
 
 /* ─── Why Amarjnet ─── */
 const features = [
-  'Proactive monitoring -- 24/7, 365',
+  'Proactive monitoring, 24/7, 365',
   'Fixed monthly pricing',
   'Dedicated account manager',
   'Microsoft-certified team',
@@ -213,7 +228,7 @@ function WhySection() {
               Proactive. Not reactive. That's the difference.
             </h2>
             <div className="space-y-4 text-white/80 mb-8" style={{ fontSize: '16px', lineHeight: 1.6 }}>
-              <p>Most businesses only think about IT when something breaks. We think about it every day -- so you don't have to. Our team monitors your systems around the clock, patches vulnerabilities before they're exploited, and responds to issues before you even notice them.</p>
+              <p>Most businesses only think about IT when something breaks. We think about it every day, so you don't have to. Our team monitors your systems around the clock, patches vulnerabilities before they're exploited, and responds to issues before you even notice them.</p>
               <p>This isn't traditional IT support. It's a strategic partnership built on transparency, expertise, and a genuine commitment to your outcomes.</p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -226,7 +241,7 @@ function WhySection() {
             </div>
           </div>
           <div className="why-right lg:col-span-2 opacity-0">
-            <img src="/abstract-tech-bg.jpg" alt="Technology visualization" className="w-full rounded-3xl" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }} />
+            <img src="/coworkers-looking-monitor.jpg" alt="Technology visualization" className="w-full h-[540px] object-cover rounded-3xl" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }} />
           </div>
         </div>
       </div>
@@ -311,7 +326,7 @@ function TestimonialsSection() {
                   <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{t.name}</p>
                   <p className="text-xs" style={{ color: 'rgba(26,35,50,0.6)' }}>{t.company}</p>
                 </div>
-                <span className="px-3 py-1 text-xs rounded-full font-medium" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#00B4D8' }}>{t.sector}</span>
+                <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#00B4D8' }}>{t.sector}</span>
               </div>
             </div>
           ))}
@@ -350,30 +365,46 @@ function CTABanner() {
 }
 
 /* ─── Partner Logos ─── */
-const partners = ['Microsoft', 'Cyber Essentials', 'Cyber Essentials Plus', 'ConnectWise', 'Acronis', 'SentinelOne', 'Sophos', 'ICO'];
+const partners = [
+  { name: 'Cyber Essentials', logo: '/CEC.png' },
+  { name: 'Cyber Essentials Plus', logo: '/CEP.png' },
+  { name: 'ConnectWise', logo: '/connectwise-hd.png' },
+  { name: 'NinjaRMM', logo: '/ninja-hd.png' },
+  { name: 'Acronis', logo: '/Acronis.svg' },
+  { name: 'Veeam', logo: '/veeam-hd.png' },
+  { name: 'Huntress', logo: '/huntress-hd.png' },
+  { name: 'Sophos', logo: '/sophos-hd.png' },
+  { name: 'Fortinet', logo: '/fortinet-hd.png' },
+  { name: 'ICO', logo: '/ico-hd.png' },
+];
 
 function PartnersSection() {
   return (
-    <section className="py-16 lg:py-20" style={{ background: '#F4F6F8' }}>
+    <section className="py-12 lg:py-16" style={{ background: '#F8FAFC' }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
-        <h3 className="font-semibold text-xl text-center mb-10" style={{ color: '#1A2332' }}>
-          Our Technology Partners & Accreditations
-        </h3>
-        <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
-          {partners.map((p, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center h-12 px-6 rounded-xl transition-all duration-300 opacity-50 hover:opacity-100"
-              style={{
-                background: 'rgba(26, 35, 50, 0.05)',
-                filter: 'grayscale(100%)',
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.filter = 'grayscale(0%)'; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.filter = 'grayscale(100%)'; }}
-            >
-              <span className="text-sm font-medium whitespace-nowrap" style={{ color: '#1A2332' }}>{p}</span>
-            </div>
-          ))}
+        <p className="text-center text-sm font-semibold uppercase tracking-wider mb-10" style={{ color: 'rgba(26, 35, 50, 0.5)' }}>
+          Our Technology Partners
+        </p>
+        <div className="relative overflow-hidden no-scrollbar">
+          <div className="flex items-center gap-x-16 animate-infinite-scroll w-max py-4">
+            {/* Duplicate the array to create seamless loop */}
+            {[...partners, ...partners].map((p, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 flex items-center justify-center transition-all duration-500 opacity-50 hover:opacity-100 active:opacity-100 grayscale hover:grayscale-0 active:grayscale-0"
+                title={p.name}
+              >
+                <img 
+                  src={p.logo} 
+                  alt={p.name} 
+                  className="h-9 md:h-11 w-auto object-contain mix-blend-multiply"
+                />
+              </div>
+            ))}
+          </div>
+          {/* Faded edges */}
+          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
         </div>
       </div>
     </section>

@@ -15,14 +15,14 @@ export default function PageHero({ breadcrumb, heading, sub }: PageHeroProps) {
     >
       {/* Background image overlay */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-40"
         style={{
           backgroundImage: 'url(/abstract-tech-bg.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1A2332]/80 to-[#1A2332]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1A2332]/70 to-[#1A2332]/90" />
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 py-20 text-center">
         {breadcrumb && (

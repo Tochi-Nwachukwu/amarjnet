@@ -12,14 +12,14 @@ const industries = [
     icon: Scale,
     name: 'Legal Firms',
     heading: 'IT support for UK law firms that never sleeps.',
-    body: 'Legal practices operate under strict SRA and ICO obligations. Client data is your most valuable and most sensitive asset. Amarjnet provides IT infrastructure and security controls purpose-built for legal environments -- from sole practitioners to multi-partner LLPs.',
+    body: 'Legal practices operate under strict SRA and ICO obligations. Client data is your most valuable and most sensitive asset. Amarjnet provides IT infrastructure and security controls purpose-built for legal environments, from sole practitioners to multi-partner LLPs.',
     benefits: [
       'SRA Technology and Cyber Security guidance aligned IT environments',
       'Secure file-sharing and client portal integration',
       'Case management system integration (Clio, LEAP, Osprey)',
       'Data loss prevention and email encryption',
       'Business continuity and disaster recovery planning',
-      'Cyber Essentials Plus certification -- required by many law firm insurers',
+      'Cyber Essentials Plus certification, required by many law firm insurers',
     ],
     cta: 'Book a Free Legal IT Review',
   },
@@ -27,7 +27,7 @@ const industries = [
     icon: Landmark,
     name: 'Financial Services',
     heading: 'FCA-ready IT infrastructure for financial businesses.',
-    body: 'IFAs, accountancy practices, and financial brokerages face heightened regulatory scrutiny. Amarjnet delivers technology environments that support FCA obligations, GDPR compliance, and operational resilience requirements -- without the enterprise price tag.',
+    body: 'IFAs, accountancy practices, and financial brokerages face heightened regulatory scrutiny. Amarjnet delivers technology environments that support FCA obligations, GDPR compliance, and operational resilience requirements, without the enterprise price tag.',
     benefits: [
       'FCA Operational Resilience Framework-aligned IT infrastructure',
       'Audit-ready environment with complete access logs',
@@ -42,12 +42,12 @@ const industries = [
     icon: Briefcase,
     name: 'Professional Services',
     heading: 'IT that scales with your consultancy.',
-    body: 'Consultancies, agencies, and professional services firms need IT that enables collaboration, protects intellectual property, and scales seamlessly as headcount grows. Amarjnet delivers exactly that -- with a flat monthly cost that\'s easy to budget.',
+    body: 'Consultancies, agencies, and professional services firms need IT that enables collaboration, protects intellectual property, and scales seamlessly as headcount grows. Amarjnet delivers exactly that, with a flat monthly cost that\'s easy to budget.',
     benefits: [
       'Microsoft 365 and Teams optimisation for distributed teams',
       'Secure remote working setup and policy enforcement',
       'Device management (Intune MDM) for BYOD and company devices',
-      'Fast onboarding of new starters -- provisioned on day one',
+      'Fast onboarding of new starters, provisioned on day one',
       'Cloud migration from legacy on-premises setups',
     ],
     cta: 'Get a Free IT Assessment',
@@ -56,10 +56,10 @@ const industries = [
     icon: Users,
     name: 'SMBs (1-50)',
     heading: 'Enterprise IT. SMB budget.',
-    body: "Small and growing businesses deserve the same IT protection and reliability that large enterprises enjoy. Amarjnet's Essentials plan starts from £45 per seat per month -- giving you proactive support, security, and cloud tools without the overhead of an in-house IT team.",
+    body: "Small and growing businesses deserve the same IT protection and reliability that large enterprises enjoy. Amarjnet's Essentials plan starts from £45 per seat per month, giving you proactive support, security, and cloud tools without the overhead of an in-house IT team.",
     benefits: [
-      'Full managed IT from day one -- no internal IT hire needed',
-      'Simple per-seat pricing -- scales as your team grows',
+      'Full managed IT from day one, no internal IT hire needed',
+      'Simple per-seat pricing, scales as your team grows',
       'Microsoft 365 included in Business and Enterprise+ tiers',
       'Free onboarding and IT audit on sign-up',
       '30-minute P1 response SLA',
@@ -80,7 +80,7 @@ export default function Industries() {
 
   return (
     <main>
-      <PageHero heading="IT built for the way your sector works." sub="Compliance obligations, workflow tools, and data sensitivity requirements vary dramatically by industry. Amarjnet's solutions are tailored to match -- not retrofitted." />
+      <PageHero heading="IT built for the way your sector works." sub="Compliance obligations, workflow tools, and data sensitivity requirements vary dramatically by industry. Amarjnet's solutions are tailored to match, not retrofitted." />
 
       {/* Industry Cards */}
       <section ref={cardsRef} className="py-20 lg:py-28" style={{ background: '#F4F6F8' }}>

@@ -7,7 +7,7 @@ import PageHero from '@/components/PageHero';
 gsap.registerPlugin(ScrollTrigger);
 
 const values = [
-  { icon: Target, name: 'Proactive Partnership', desc: 'We prevent problems -- we don\'t just fix them.' },
+  { icon: Target, name: 'Proactive Partnership', desc: "We prevent problems, we don't just fix them." },
   { icon: Eye, name: 'Radical Transparency', desc: 'Clear pricing, clear communication, no surprises.' },
   { icon: Shield, name: 'Security First', desc: 'Security isn\'t a bolt-on. It\'s baked into everything we do.' },
   { icon: TrendingUp, name: 'Continuous Improvement', desc: 'We learn, iterate, and keep getting better.' },
@@ -40,7 +40,7 @@ export default function About() {
 
   return (
     <main>
-      <PageHero heading="We're not just an IT company. We're your IT team." sub="Amarjnet was founded on a simple idea: that UK businesses deserve IT support that's proactive, transparent, and genuinely invested in their success -- not just a helpdesk that picks up when things go wrong." />
+      <PageHero heading="We're not just an IT company. We're your IT team." sub="Amarjnet was founded on a simple idea: that UK businesses deserve IT support that's proactive, transparent, and genuinely invested in their success, not just a helpdesk that picks up when things go wrong." />
 
       {/* Our Story */}
       <section ref={storyRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
@@ -51,13 +51,13 @@ export default function About() {
                 Built for businesses like yours.
               </h2>
               <div className="space-y-4" style={{ color: 'rgba(26,35,50,0.7)', fontSize: '16px', lineHeight: 1.7 }}>
-                <p>Amarjnet was established in 2026 by a team with deep roots in UK IT services, cybersecurity, and cloud infrastructure. We saw too many SMBs paying for reactive IT support -- paying per call, per hour, per problem -- with no visibility, no strategy, and no real partnership.</p>
+                <p>Amarjnet was established in 2026 by a team with deep roots in UK IT services, cybersecurity, and cloud infrastructure. We saw too many SMBs paying for reactive IT support, paying per call, per hour, per problem, with no visibility, no strategy, and no real partnership.</p>
                 <p>We built Amarjnet to change that. Fixed pricing. Proactive support. Real accountability. A team that treats your business like their own.</p>
-                <p>From day one, we made a deliberate choice to serve SMBs and regulated-sector businesses -- not try to be everything to everyone. That focus means deeper expertise, better outcomes, and a service that genuinely fits the way you work.</p>
+                <p>From day one, we made a deliberate choice to serve SMBs and regulated-sector businesses, not try to be everything to everyone. That focus means deeper expertise, better outcomes, and a service that genuinely fits the way you work.</p>
               </div>
             </div>
             <div className="story-right opacity-0">
-              <img src="/team-office.jpg" alt="Amarjnet team office" className="w-full rounded-3xl" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }} />
+              <img src="/business-people.png" alt="Amarjnet team office" className="w-full rounded-3xl" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }} />
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function About() {
               The people behind the platform.
             </h2>
             <p className="max-w-[640px] mx-auto" style={{ color: 'rgba(26,35,50,0.7)', fontSize: '16px' }}>
-              Our team combines deep technical expertise with a client-first ethos -- engineers and account managers who know your name and understand your business.
+              Our team combines deep technical expertise with a client-first ethos, with engineers and account managers who know your name and understand your business.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

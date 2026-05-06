@@ -56,7 +56,7 @@ export default function Navbar() {
       <header
         className="sticky z-50 transition-all duration-300"
         style={{
-          top: '36px',
+          top: '0px',
           height: '64px',
           background: scrolled || !isHome
             ? 'rgba(26, 35, 50, 0.95)'

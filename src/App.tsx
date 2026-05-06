@@ -22,7 +22,7 @@ function ScrollToTop() {
 
 function Layout() {
   return (
-    <div className="min-h-[100dvh] flex flex-col" style={{ fontFamily: "'Outfit', sans-serif" }}>
+    <div className="min-h-[100dvh] flex flex-col" style={{ fontFamily: "'Inter', sans-serif" }}>
       <ScrollToTop />
       <TopBar />
       <Navbar />

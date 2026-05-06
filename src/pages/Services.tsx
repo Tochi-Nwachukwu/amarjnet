@@ -11,7 +11,7 @@ const servicesData = [
   {
     overline: 'CORE SERVICE',
     heading: 'Always-on IT support that keeps your business running.',
-    body: 'Our managed IT support service is built on one principle: prevent problems before they happen. Through our Remote Monitoring & Management (RMM) platform, we watch over every device, server, and connection in your environment -- 24 hours a day, 7 days a week. When issues do arise, our UK-based helpdesk responds fast -- with defined SLAs and a team that knows your business.',
+    body: 'Our managed IT support service is built on one principle: prevent problems before they happen. Through our Remote Monitoring & Management (RMM) platform, we watch over every device, server, and connection in your environment, 24 hours a day, 7 days a week. When issues do arise, our UK-based helpdesk responds fast, with defined SLAs and a team that knows your business.',
     features: [
       '24/5 helpdesk with 24/7 emergency line',
       'Proactive endpoint monitoring & automated patch management',
@@ -21,15 +21,15 @@ const servicesData = [
       'Monthly reporting dashboard',
       'SLA: P1 response within 30 minutes | P2 within 2 hours',
     ],
-    image: '/cloud-solutions.jpg',
+    image: '/IT-services.png',
     bg: '#fff',
   },
   {
     overline: 'SECURITY',
     heading: 'Enterprise-grade security. SMB-friendly pricing.',
-    body: "Cyber threats don't discriminate by company size. We deliver the same level of protection used by large enterprises -- layered, proactive, and compliance-aligned -- at a price that works for growing businesses.",
+    body: "Cyber threats don't discriminate by company size. We deliver the same level of protection used by large enterprises, layered, proactive, and compliance-aligned, at a price that works for growing businesses.",
     features: [
-      'Endpoint Detection & Response (EDR) -- SentinelOne or Microsoft Defender',
+      'Endpoint Detection & Response (EDR), SentinelOne or Microsoft Defender',
       'Email security: anti-phishing, DKIM/SPF/DMARC configuration',
       'Dark web monitoring and credential exposure alerts',
       'Security awareness training (monthly phishing simulations)',
@@ -38,20 +38,20 @@ const servicesData = [
       'Multi-factor authentication rollout and enforcement',
       'Vulnerability scanning and remediation reporting',
     ],
-    image: '/security-visual.jpg',
+    image: '/security.png',
     bg: '#F4F6F8',
   },
   {
     overline: 'CLOUD',
-    heading: 'Move to the cloud -- and stay in control.',
-    body: 'As a Microsoft Cloud Solution Provider (CSP), we plan, execute, and manage your move to Microsoft 365, Azure, and beyond. We take full ownership of the migration -- and then manage the environment so your team can focus on work, not IT.',
+    heading: 'Move to the cloud and stay in control.',
+    body: 'As a Microsoft Cloud Solution Provider (CSP), we plan, execute, and manage your move to Microsoft 365, Azure, and beyond. We take full ownership of the migration, and then manage the environment so your team can focus on work, not IT.',
     features: [
       'Microsoft 365 tenant setup, security hardening, and user migration',
       'Azure virtual desktop, identity, and infrastructure management',
       'SharePoint architecture and Teams governance',
       'Cloud backup and business continuity planning',
       'Microsoft Copilot deployment and adoption support',
-      'M365 licensing supply via CSP -- competitive pricing',
+      'M365 licensing supply via CSP, competitive pricing',
       'Ongoing Azure cost optimisation reviews',
       'AWS workload migration (for software and SaaS businesses)',
     ],
@@ -61,17 +61,17 @@ const servicesData = [
   {
     overline: 'INFRASTRUCTURE',
     heading: 'The network is the foundation. We make it unbreakable.',
-    body: 'Without a reliable, secure network, everything else fails. We design, deploy, and manage networking infrastructure that\'s built to perform -- from your office Wi-Fi to your wide area network.',
+    body: 'Without a reliable, secure network, everything else fails. We design, deploy, and manage networking infrastructure that\'s built to perform, from your office Wi-Fi to your wide area network.',
     features: [
-      'Firewall supply and management -- Sophos, Fortinet, Cisco Meraki',
+      'Firewall supply and management, Sophos, Fortinet, Cisco Meraki',
       'Managed SD-WAN and MPLS connectivity',
       'Enterprise Wi-Fi design and deployment',
       'Network segmentation and VLAN design for compliance',
-      'Hardware-as-a-Service (HaaS) -- spread equipment costs monthly',
+      'Hardware-as-a-Service (HaaS), spread equipment costs monthly',
       'Remote network monitoring and alerting',
       'On-site cabling and rack infrastructure projects',
     ],
-    image: '/compliance-visual.jpg',
+    image: '/Dedicated Servers and Cloud Virtual Servers.png',
     bg: '#F4F6F8',
   },
 ];
@@ -102,7 +102,7 @@ export default function Services() {
 
   return (
     <main>
-      <PageHero breadcrumb="Home > Services" heading="Everything your business needs. Nothing it doesn't." sub="Amarjnet delivers a complete managed IT portfolio -- purpose-built for UK SMBs and regulated industries. Every service is available standalone or as part of a fully managed monthly contract." />
+      <PageHero breadcrumb="Home > Services" heading="Everything your business needs. Nothing it doesn't." sub="Amarjnet delivers a complete managed IT portfolio. Purpose-built for UK SMBs and regulated industries. Every service is available standalone or as part of a fully managed monthly contract." />
 
       <div ref={sectionsRef}>
         {servicesData.map((service, i) => (
@@ -134,7 +134,7 @@ export default function Services() {
                 </div>
                 <div className={`service-image ${i % 2 === 1 ? 'lg:order-1' : ''} opacity-0`}>
                   <div className="glass-card p-4 overflow-hidden">
-                    <img src={service.image} alt={service.heading} className="w-full rounded-2xl" />
+                    <img src={service.image} alt={service.heading} className="w-full aspect-square object-cover rounded-2xl" />
                   </div>
                 </div>
               </div>
