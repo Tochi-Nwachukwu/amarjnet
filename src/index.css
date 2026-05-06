@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 216 35% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 35% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 35% 14%;
+    --primary: 190 100% 42%;
+    --primary-foreground: 216 35% 14%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 216 35% 14%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 216 15% 40%;
+    --accent: 190 100% 42%;
+    --accent-foreground: 216 35% 14%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 190 100% 42%;
+    --radius: 1.5rem;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(245, 230, 232, 0.60);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  .glass-card-dark {
+    background: rgba(15, 43, 76, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 32px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-200;
+    background: #00B4D8;
+    color: #1A2332;
+    height: 48px;
+    padding: 0 28px;
+  }
+
+  .btn-primary:hover {
+    background: #0096B7;
+    transform: scale(1.02);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-200;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+    height: 48px;
+    padding: 0 28px;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-200;
+    background: transparent;
+    border: 1px solid #00B4D8;
+    color: #00B4D8;
+    height: 48px;
+    padding: 0 28px;
+  }
+
+  .btn-outline:hover {
+    background: rgba(0, 180, 216, 0.1);
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-widest;
+    color: #00B4D8;
+  }
+}
