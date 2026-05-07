@@ -30,7 +30,7 @@ function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden" style={{ marginTop: '-64px', paddingTop: '64px' }}>
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden" style={{ marginTop: '-80px', paddingTop: '80px' }}>
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -212,8 +212,8 @@ function WhySection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } });
-      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' } });
+      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
+      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -372,10 +372,11 @@ const partners = [
   { name: 'NinjaRMM', logo: '/ninja-hd.png' },
   { name: 'Acronis', logo: '/Acronis.svg' },
   { name: 'Veeam', logo: '/veeam-hd.png' },
-  { name: 'Huntress', logo: '/huntress-hd.png' },
+  { name: 'Huntress', logo: '/huntress-hd.png', size: 'h-14 md:h-16' },
   { name: 'Sophos', logo: '/sophos-hd.png' },
   { name: 'Fortinet', logo: '/fortinet-hd.png' },
   { name: 'ICO', logo: '/ico-hd.png' },
+  { name: 'Microsoft', logo: '/microsoft-hd.png' },
 ];
 
 function PartnersSection() {
@@ -397,7 +398,7 @@ function PartnersSection() {
                 <img 
                   src={p.logo} 
                   alt={p.name} 
-                  className="h-9 md:h-11 w-auto object-contain mix-blend-multiply"
+                  className={`${(p as any).size || 'h-9 md:h-11'} w-auto object-contain mix-blend-multiply`}
                 />
               </div>
             ))}

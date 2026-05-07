@@ -57,7 +57,7 @@ export default function Navbar() {
         className="sticky z-50 transition-all duration-300"
         style={{
           top: '0px',
-          height: '64px',
+          height: '80px',
           background: scrolled || !isHome
             ? 'rgba(26, 35, 50, 0.95)'
             : 'transparent',
@@ -67,10 +67,7 @@ export default function Navbar() {
         <div className="max-w-[1280px] mx-auto h-full flex items-center justify-between px-4 md:px-6 lg:px-12">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#00B4D8' }}>
-              <span className="text-white font-bold text-sm">a</span>
-            </div>
-            <span className="text-white font-semibold text-lg tracking-tight">amarjnet</span>
+            <img src="/amarjnet_logo_white.svg" alt="amarjnet logo" className="h-8 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}
@@ -138,7 +135,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div
           className="fixed inset-0 z-[55] lg:hidden"
-          style={{ background: 'rgba(26, 35, 50, 0.98)', top: '100px' }}
+          style={{ background: 'rgba(26, 35, 50, 0.98)', top: '80px' }}
         >
           <nav className="flex flex-col p-6 gap-2">
             {navLinks.map((link) => (

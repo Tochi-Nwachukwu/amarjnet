@@ -21,7 +21,14 @@ const team = [
   { name: 'Tom Edwards', title: 'Lead Security Engineer', bio: 'Tom is our cybersecurity specialist, holding CISSP and multiple Microsoft security certifications.', image: '/team-3.jpg' },
 ];
 
-const accreditations = ['Microsoft Solutions Partner', 'Cyber Essentials', 'Cyber Essentials Plus', 'ISO 27001 Aligned', 'ICO Registered', 'IASME Consortium'];
+const accreditations = [
+  { name: 'Microsoft Solutions Partner', image: '/microsoft-solutions-partner-security.png' },
+  { name: 'Cyber Essentials', image: '/Cyber-essentials.png' },
+  { name: 'Cyber Essentials Plus', image: '/Cyber-E-Plus.png' },
+  { name: 'ISO 27001 Aligned', image: '/ISO_27001.png' },
+  { name: 'ICO Registered', image: '/ico-hd.png' },
+  { name: 'IASME Consortium', image: '/IASME-hd.png' }
+];
 
 export default function About() {
   const storyRef = useRef<HTMLDivElement>(null);
@@ -111,21 +118,22 @@ export default function About() {
       </section>
 
       {/* Accreditations */}
-      <section className="py-16 lg:py-20" style={{ background: '#F4F6F8' }}>
+      <section className="py-12 lg:py-16" style={{ background: '#F4F6F8' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
-          <h3 className="font-semibold text-xl text-center mb-10" style={{ color: '#1A2332' }}>
+          <h3 className="font-semibold text-xl text-center mb-8" style={{ color: '#1A2332' }}>
             Certified. Accredited. Trusted.
           </h3>
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
+          <div className="flex items-center justify-between gap-4 md:gap-8 overflow-x-auto no-scrollbar py-4">
             {accreditations.map((a, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center h-12 px-6 rounded-xl transition-all duration-300 opacity-50 hover:opacity-100"
-                style={{ background: 'rgba(26, 35, 50, 0.05)', filter: 'grayscale(100%)' }}
+                className="flex-shrink-0 flex items-center justify-center h-12 md:h-16 transition-all duration-300 opacity-60 hover:opacity-100"
+                style={{ filter: 'grayscale(100%)' }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.filter = 'grayscale(0%)'; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.filter = 'grayscale(100%)'; }}
+                title={a.name}
               >
-                <span className="text-sm font-medium whitespace-nowrap" style={{ color: '#1A2332' }}>{a}</span>
+                <img src={a.image} alt={a.name} className="h-full w-auto object-contain mix-blend-multiply" />
               </div>
             ))}
           </div>

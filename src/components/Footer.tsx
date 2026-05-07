@@ -31,14 +31,11 @@ export default function Footer() {
   return (
     <footer style={{ background: '#1A2332' }} className="text-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 pt-16 pb-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 items-start">
           {/* Brand Column */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: '#00B4D8' }}>
-                <span className="text-white font-bold text-sm">a</span>
-              </div>
-              <span className="font-semibold text-lg tracking-tight">amarjnet</span>
+            <div className="flex items-center gap-2 mb-2">
+              <img src="/amarjnet_logo_white.svg" alt="amarjnet logo" className="h-8 w-auto object-contain" />
             </div>
             <p className="text-sm text-white/60 mb-6 leading-relaxed">
               Technology that works. Business that grows.
