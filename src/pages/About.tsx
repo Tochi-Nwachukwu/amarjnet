@@ -95,7 +95,7 @@ export default function About() {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="font-semibold mb-4" style={{ fontSize: 'clamp(28px, 3vw, 48px)', color: '#1A2332' }}>
-              The people behind the platform.
+              The Experts behind the platform.
             </h2>
             <p className="max-w-[640px] mx-auto" style={{ color: 'rgba(26,35,50,0.7)', fontSize: '16px' }}>
               Our team combines deep technical expertise with a client-first ethos, with engineers and account managers who know your name and understand your business.
