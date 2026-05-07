@@ -18,13 +18,13 @@ function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ delay: 0.3 });
-      tl.fromTo(cardRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' })
-        .fromTo('.hero-eyebrow', { opacity: 0 }, { opacity: 1, duration: 0.2 }, '-=0.1')
-        .fromTo('.hero-headline span', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, stagger: 0.05, ease: 'power3.out' }, '-=0.1')
-        .fromTo('.hero-sub', { opacity: 0 }, { opacity: 1, duration: 0.2 })
-        .fromTo('.hero-cta', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, stagger: 0.1 }, '-=0.1')
-        .fromTo('.hero-trust', { opacity: 0 }, { opacity: 1, duration: 0.2 });
+      const tl = gsap.timeline({ delay: 0.05 });
+      tl.fromTo(cardRef.current, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power3.out' })
+        .fromTo('.hero-eyebrow', { opacity: 0 }, { opacity: 1, duration: 0.15 }, '-=0.05')
+        .fromTo('.hero-headline span', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.2, stagger: 0.03, ease: 'power3.out' }, '-=0.05')
+        .fromTo('.hero-sub', { opacity: 0 }, { opacity: 1, duration: 0.15 })
+        .fromTo('.hero-cta', { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.2, stagger: 0.05 }, '-=0.05')
+        .fromTo('.hero-trust', { opacity: 0 }, { opacity: 1, duration: 0.15 });
     }, contentRef);
     return () => ctx.revert();
   }, []);
