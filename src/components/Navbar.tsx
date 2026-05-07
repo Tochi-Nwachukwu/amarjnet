@@ -35,6 +35,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -134,30 +135,45 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-[55] lg:hidden"
+          className="fixed inset-0 z-[55] lg:hidden overflow-y-auto"
           style={{ background: 'rgba(26, 35, 50, 0.98)', top: '80px' }}
         >
-          <nav className="flex flex-col p-6 gap-2">
+          <nav className="flex flex-col p-6 gap-1">
             {navLinks.map((link) => (
               <div key={link.label}>
-                <Link
-                  to={link.href}
-                  className="block py-3 text-lg font-medium text-white/90 hover:text-[#00B4D8] transition-colors"
-                >
-                  {link.label}
-                </Link>
-                {link.dropdown && (
-                  <div className="pl-4 flex flex-col gap-1">
-                    {link.dropdown.map((item, i) => (
-                      <Link
-                        key={i}
-                        to={item.href}
-                        className="py-2 text-sm text-white/60 hover:text-[#00B4D8]"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+                {link.dropdown ? (
+                  <>
+                    <button
+                      onClick={() => setMobileDropdown(mobileDropdown === link.label ? null : link.label)}
+                      className="flex items-center justify-between w-full py-3 text-lg font-medium text-white/90 hover:text-[#1A5EAB] transition-colors"
+                    >
+                      {link.label}
+                      <ChevronDown
+                        size={18}
+                        className={`transition-transform duration-200 ${mobileDropdown === link.label ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                    {mobileDropdown === link.label && (
+                      <div className="pl-4 pb-2 flex flex-col gap-1">
+                        {link.dropdown.map((item, i) => (
+                          <Link
+                            key={i}
+                            to={item.href}
+                            className="py-2 text-sm text-white/60 hover:text-[#1A5EAB] transition-colors"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    to={link.href}
+                    className="block py-3 text-lg font-medium text-white/90 hover:text-[#1A5EAB] transition-colors"
+                  >
+                    {link.label}
+                  </Link>
                 )}
               </div>
             ))}
