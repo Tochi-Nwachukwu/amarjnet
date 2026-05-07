@@ -22,12 +22,12 @@ const team = [
 ];
 
 const accreditations = [
-  { name: 'Microsoft Solutions Partner', image: '/microsoft-solutions-partner-security.png' },
-  { name: 'Cyber Essentials', image: '/Cyber-essentials.png' },
-  { name: 'Cyber Essentials Plus', image: '/Cyber-E-Plus.png' },
+  { name: 'Microsoft Solutions Partner', image: '/microsoft-solutions-partner-security.svg' },
+  { name: 'Cyber Essentials', image: '/Cyber-essentials.svg' },
+  { name: 'Cyber Essentials Plus', image: '/Cyber-E-Plus.svg' },
   { name: 'ISO 27001 Aligned', image: '/ISO_27001.png' },
   { name: 'ICO Registered', image: '/ico-hd.png' },
-  { name: 'IASME Consortium', image: '/IASME-hd.png' }
+  { name: 'IASME Consortium', image: '/IASME-hd.svg' }
 ];
 
 export default function About() {
