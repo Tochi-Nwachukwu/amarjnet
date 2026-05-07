@@ -47,7 +47,7 @@ export default function About() {
 
   return (
     <main>
-      <PageHero heading="We're not just an IT company. We're your IT team." sub="Amarjnet was founded on a simple idea: that UK businesses deserve IT support that's proactive, transparent, and genuinely invested in their success, not just a helpdesk that picks up when things go wrong." />
+      <PageHero heading="Not just an IT company. We're Your IT team." sub="Amarjnet was founded on a simple idea: that UK businesses deserve IT support that's proactive, transparent, and genuinely invested in their success, not just a helpdesk that picks up when things go wrong." />
 
       {/* Our Story */}
       <section ref={storyRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
