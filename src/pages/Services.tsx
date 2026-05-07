@@ -121,7 +121,7 @@ export default function Services() {
                     {service.features.map((f, j) => (
                       <li key={j} className="feature-item flex items-start gap-3 opacity-0">
                         <span className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5" style={{ background: 'rgba(0, 180, 216, 0.15)' }}>
-                          <Check size={12} style={{ color: '#00B4D8' }} />
+                          <Check size={12} style={{ color: '#1A5EAB' }} />
                         </span>
                         <span className="text-sm" style={{ color: '#1A2332' }}>{f}</span>
                       </li>

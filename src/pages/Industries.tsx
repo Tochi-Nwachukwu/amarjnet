@@ -89,7 +89,7 @@ export default function Industries() {
             {industries.map((ind, i) => (
               <div key={i} className="industry-large-card glass-card p-8 lg:p-10 opacity-0">
                 <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
-                  <ind.icon size={28} style={{ color: '#00B4D8' }} />
+                  <ind.icon size={28} style={{ color: '#1A5EAB' }} />
                 </div>
                 <span className="eyebrow mb-2 block">{ind.name}</span>
                 <h3 className="font-semibold text-xl lg:text-2xl mb-4" style={{ color: '#1A2332', lineHeight: 1.2 }}>{ind.heading}</h3>
@@ -97,7 +97,7 @@ export default function Industries() {
                 <ul className="space-y-2.5 mb-8">
                   {ind.benefits.map((b, j) => (
                     <li key={j} className="flex items-start gap-2.5 text-sm" style={{ color: '#1A2332' }}>
-                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#00B4D8' }} />
+                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#1A5EAB' }} />
                       {b}
                     </li>
                   ))}

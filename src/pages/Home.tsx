@@ -129,7 +129,7 @@ function StatsSection() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0">
           {targets.map((_, i) => (
             <div key={i} className={`text-center py-4 ${i < 3 ? 'lg:border-r lg:border-[#1A2332]/10' : ''}`}>
-              <div className="font-bold" style={{ fontSize: 'clamp(36px, 4vw, 56px)', color: '#00B4D8', letterSpacing: '-0.02em' }}>
+              <div className="font-bold" style={{ fontSize: 'clamp(36px, 4vw, 56px)', color: '#00B4DB', letterSpacing: '-0.02em' }}>
                 {prefixes[i]}{i === 3 ? '24' : counts[i]}{suffixes[i]}
               </div>
               <div className="text-sm mt-1" style={{ color: '#1A2332' }}>{labels[i]}</div>
@@ -179,11 +179,11 @@ function ServicesSection() {
           {services.map((s, i) => (
             <div key={i} className="service-card glass-card p-8 group cursor-pointer opacity-0">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
-                <s.icon size={24} style={{ color: '#00B4D8' }} />
+                <s.icon size={24} style={{ color: '#1A5EAB' }} />
               </div>
               <h3 className="font-semibold text-xl mb-2" style={{ color: '#1A2332' }}>{s.headline}</h3>
               <p className="text-sm mb-4" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.5 }}>{s.body}</p>
-              <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium hover:underline" style={{ color: '#00B4D8' }}>
+              <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium hover:underline" style={{ color: '#1A5EAB' }}>
                 Learn More <ArrowRight size={14} />
               </Link>
             </div>
@@ -234,7 +234,7 @@ function WhySection() {
             <div className="flex flex-wrap gap-3">
               {features.map((f, i) => (
                 <span key={i} className="inline-flex items-center gap-2 px-5 py-2.5 text-sm text-white rounded-full" style={{ background: 'rgba(0, 180, 216, 0.15)', border: '1px solid rgba(0, 180, 216, 0.3)' }}>
-                  <span style={{ color: '#00B4D8', fontSize: '12px' }}>&#x2713;</span>
+                  <span style={{ color: '#1A5EAB', fontSize: '12px' }}>&#x2713;</span>
                   {f}
                 </span>
               ))}
@@ -282,7 +282,7 @@ function IndustriesSection() {
           {industries.map((ind, i) => (
             <Link to="/industries" key={i} className="industry-card glass-card p-8 text-center group cursor-pointer hover:border-l-[3px] hover:border-l-[#00B4D8] hover:pl-[29px] transition-all opacity-0">
               <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
-                <ind.icon size={24} style={{ color: '#00B4D8' }} />
+                <ind.icon size={24} style={{ color: '#1A5EAB' }} />
               </div>
               <h3 className="font-semibold text-lg mb-2" style={{ color: '#1A2332' }}>{ind.name}</h3>
               <p className="text-sm" style={{ color: 'rgba(26,35,50,0.7)' }}>{ind.desc}</p>
@@ -319,14 +319,14 @@ function TestimonialsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div key={i} className="glass-card p-8">
-              <Quote size={32} style={{ color: '#00B4D8' }} className="mb-4 opacity-50" />
+              <Quote size={32} style={{ color: '#1A5EAB' }} className="mb-4 opacity-50" />
               <p className="text-base italic mb-6" style={{ color: '#1A2332', lineHeight: 1.6 }}>"{t.quote}"</p>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{t.name}</p>
                   <p className="text-xs" style={{ color: 'rgba(26,35,50,0.6)' }}>{t.company}</p>
                 </div>
-                <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#00B4D8' }}>{t.sector}</span>
+                <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#1A5EAB' }}>{t.sector}</span>
               </div>
             </div>
           ))}
@@ -346,7 +346,7 @@ function TestimonialsSection() {
 function CTABanner() {
   return (
     <section className="relative py-16 lg:py-20 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #00B4D8 0%, #1A5EAB 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(140deg, #1A5EAB 0%, #00B4D8 100%)' }} />
       <div className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-8">
         <div className="text-center lg:text-left">
           <h2 className="font-semibold text-white mb-3" style={{ fontSize: 'clamp(28px, 3vw, 48px)', lineHeight: 1.1 }}>

@@ -80,7 +80,7 @@ export default function About() {
             {values.map((v, i) => (
               <div key={i} className="value-card glass-card p-8 text-center opacity-0">
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
-                  <v.icon size={24} style={{ color: '#00B4D8' }} />
+                  <v.icon size={24} style={{ color: '#1A5EAB' }} />
                 </div>
                 <h3 className="font-semibold text-lg mb-2" style={{ color: '#1A2332' }}>{v.name}</h3>
                 <p className="text-sm" style={{ color: 'rgba(26,35,50,0.7)' }}>{v.desc}</p>
@@ -106,10 +106,10 @@ export default function About() {
               <div key={i} className="team-card glass-card p-8 text-center opacity-0">
                 <img src={member.image} alt={member.name} className="w-28 h-28 rounded-full mx-auto mb-5 object-cover" style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }} />
                 <h3 className="font-semibold text-lg mb-1" style={{ color: '#1A2332' }}>{member.name}</h3>
-                <p className="text-xs font-medium mb-3" style={{ color: '#00B4D8' }}>{member.title}</p>
+                <p className="text-xs font-medium mb-3" style={{ color: '#1A5EAB' }}>{member.title}</p>
                 <p className="text-sm mb-4" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.5 }}>{member.bio}</p>
                 <a href="#" className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
-                  <Linkedin size={16} style={{ color: '#00B4D8' }} />
+                  <Linkedin size={16} style={{ color: '#1A5EAB' }} />
                 </a>
               </div>
             ))}
