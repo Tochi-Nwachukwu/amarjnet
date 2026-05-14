@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Phone, Mail, AlertTriangle } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -7,16 +8,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const portals = [
-  { icon: 'Monitor', name: 'IT Support Desk', desc: 'Log a ticket, check ticket status, view history', url: '#' },
-  { icon: 'Activity', name: 'Systems Dashboard', desc: 'View your live IT health, uptime, and alerts', url: '#' },
+  { icon: 'Monitor', name: 'IT Support Desk (Remote Control)', desc: 'Access remote support via ConnectWise screen connect', url: 'https://usehalo.com/halopsa/' },
+  { icon: 'Activity', name: 'Systems Dashboard', desc: 'View your live IT health, uptime, and alerts', url: 'https://www.connectwise.com/' },
   { icon: 'Cloud', name: 'Microsoft 365', desc: 'Access your M365 apps, email, SharePoint & Teams', url: 'https://office.com' },
   { icon: 'Mail', name: 'Email & Messaging', desc: 'Outlook Web Access -- access email from any browser', url: 'https://outlook.office.com' },
-  { icon: 'UserPlus', name: 'Client Onboarding', desc: 'Complete your onboarding steps and IT audit forms', url: '#' },
-  { icon: 'GraduationCap', name: 'Training & Awareness', desc: 'Security awareness training, phishing simulations', url: '#' },
-  { icon: 'BookOpen', name: 'Documentation & KB', desc: 'Your IT runbooks, how-to guides, and knowledge base', url: '#' },
-  { icon: 'CreditCard', name: 'Billing & Invoices', desc: 'View invoices, update payment details, download statements', url: '#' },
-  { icon: 'Key', name: 'Password Manager', desc: 'Access your business password vault', url: '#' },
-  { icon: 'MonitorSmartphone', name: 'Remote Access', desc: 'Securely connect to your work desktop from anywhere', url: '#' },
+  { icon: 'UserPlus', name: 'Client Onboarding', desc: 'Complete your onboarding steps and IT audit forms', url: '/contact' },
+  { icon: 'GraduationCap', name: 'Training & Awareness', desc: 'Security awareness training, phishing simulations', url: 'https://www.knowbe4.com/' },
+  { icon: 'BookOpen', name: 'Documentation & KB', desc: 'Access your IT runbooks and documentation via IT Glue', url: 'https://www.itglue.com/' },
+  { icon: 'CreditCard', name: 'Billing & Invoices', desc: 'View invoices, update payment details, download statements', url: 'https://www.xero.com/' },
+  { icon: 'Key', name: 'Password Manager', desc: 'Access your business password vault', url: 'https://1password.com/' },
+  { icon: 'MonitorSmartphone', name: 'Remote Access', desc: 'Securely connect to your work desktop from anywhere', url: 'https://www.connectwise.com/platform/rmm' },
 ];
 
 export default function ClientPortal() {
@@ -31,6 +32,10 @@ export default function ClientPortal() {
 
   return (
     <main>
+      <Helmet>
+        <title>Client Portal | Amarjnet Managed IT Support</title>
+        <meta name="description" content="Access your Amarjnet IT support desk, systems dashboard, Microsoft 365, and training resources in one secure location." />
+      </Helmet>
       <PageHero heading="Your Client Portal" sub="Everything you need -- in one place. Access your IT support desk, systems monitoring, Microsoft 365, training, and more below." />
 
       {/* Portal Tiles */}

@@ -1,11 +1,11 @@
 import { Link } from 'react-router';
-import { Linkedin, Twitter } from 'lucide-react';
+import { Linkedin, Twitter, Youtube } from 'lucide-react';
 
 const serviceLinks = [
-  { label: 'Managed IT Support', href: '/services' },
-  { label: 'Cybersecurity & Compliance', href: '/services' },
-  { label: 'Cloud & Microsoft 365', href: '/services' },
-  { label: 'Networking & Infrastructure', href: '/services' },
+  { label: 'Managed IT Support', href: '/services/managed-it-support' },
+  { label: 'Cybersecurity & Compliance', href: '/services/cybersecurity' },
+  { label: 'Cloud & Microsoft 365', href: '/services/cloud-microsoft-365' },
+  { label: 'Networking & Infrastructure', href: '/services/networking-infrastructure' },
   { label: 'All Services', href: '/services' },
 ];
 
@@ -23,6 +23,8 @@ const clientLinks = [
   { label: 'Systems Dashboard', href: '/client-portal' },
   { label: 'Microsoft 365', href: '/client-portal' },
   { label: 'Email (Outlook Web)', href: '/client-portal' },
+  { label: 'Password Manager', href: '/client-portal' },
+  { label: 'Documentation KB', href: '/client-portal' },
   { label: 'Training Portal', href: '/client-portal' },
   { label: 'Client Portal (All)', href: '/client-portal' },
 ];
@@ -41,11 +43,14 @@ export default function Footer() {
               Technology that works. Business that grows.
             </p>
             <div className="flex items-center gap-3">
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
                 <Linkedin size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
                 <Twitter size={18} />
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
+                <Youtube size={18} />
               </a>
             </div>
           </div>

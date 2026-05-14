@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -109,7 +110,7 @@ function ComparisonValue({ value }: { value: boolean | string }) {
 
 export default function Pricing() {
   const [showComparison, setShowComparison] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -121,6 +122,10 @@ export default function Pricing() {
 
   return (
     <main>
+      <Helmet>
+        <title>Managed IT Pricing | Amarjnet IT Solutions UK</title>
+        <meta name="description" content="Transparent per-seat managed IT pricing from £45/month. Compare Essentials, Business, and Enterprise+ plans. No hidden fees." />
+      </Helmet>
       <PageHero heading="Transparent pricing. No hidden extras." sub="All plans are per-seat, per-month. Minimum 12-month initial term, then rolling monthly. Prices shown exclude VAT." />
 
       {/* Pricing Cards */}

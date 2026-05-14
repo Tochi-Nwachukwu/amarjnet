@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Scale, Landmark, Briefcase, Users, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +23,7 @@ const industries = [
       'Cyber Essentials Plus certification, required by many law firm insurers',
     ],
     cta: 'Book a Free Legal IT Review',
+    slug: '/industries/legal',
   },
   {
     icon: Landmark,
@@ -37,6 +39,7 @@ const industries = [
       'Microsoft 365 compliance centre configuration',
     ],
     cta: 'Talk to a Financial IT Specialist',
+    slug: '/industries/financial-services',
   },
   {
     icon: Briefcase,
@@ -51,6 +54,7 @@ const industries = [
       'Cloud migration from legacy on-premises setups',
     ],
     cta: 'Get a Free IT Assessment',
+    slug: '/industries/professional-services',
   },
   {
     icon: Users,
@@ -65,6 +69,7 @@ const industries = [
       '30-minute P1 response SLA',
     ],
     cta: 'See Pricing',
+    slug: '/industries/smb',
   },
 ];
 
@@ -80,6 +85,10 @@ export default function Industries() {
 
   return (
     <main>
+      <Helmet>
+        <title>Industries We Serve | Amarjnet Managed IT UK</title>
+        <meta name="description" content="Industry-specific managed IT for legal firms, financial services, professional services, and SMBs. Compliance-ready, sector-tailored solutions." />
+      </Helmet>
       <PageHero heading="IT built for the way your sector works." sub="Compliance obligations, workflow tools, and data sensitivity requirements vary dramatically by industry. Amarjnet's solutions are tailored to match, not retrofitted." />
 
       {/* Industry Cards */}
@@ -102,7 +111,7 @@ export default function Industries() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" className="btn-primary text-xs">
+                <Link to={ind.slug} className="btn-primary text-xs">
                   {ind.cta} <ArrowRight size={14} className="ml-1" />
                 </Link>
               </div>

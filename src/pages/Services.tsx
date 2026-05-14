@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Check } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -23,6 +24,7 @@ const servicesData = [
     ],
     image: '/IT-services.png',
     bg: '#fff',
+    slug: '/services/managed-it-support',
   },
   {
     overline: 'SECURITY',
@@ -40,6 +42,7 @@ const servicesData = [
     ],
     image: '/security.png',
     bg: '#F4F6F8',
+    slug: '/services/cybersecurity',
   },
   {
     overline: 'CLOUD',
@@ -57,6 +60,7 @@ const servicesData = [
     ],
     image: '/network-visual.jpg',
     bg: '#fff',
+    slug: '/services/cloud-microsoft-365',
   },
   {
     overline: 'INFRASTRUCTURE',
@@ -73,6 +77,7 @@ const servicesData = [
     ],
     image: '/Dedicated Servers and Cloud Virtual Servers.png',
     bg: '#F4F6F8',
+    slug: '/services/networking-infrastructure',
   },
 ];
 
@@ -102,6 +107,10 @@ export default function Services() {
 
   return (
     <main>
+      <Helmet>
+        <title>IT Services | Amarjnet Managed IT Solutions UK</title>
+        <meta name="description" content="From helpdesk and cybersecurity to Microsoft 365 and networking — Amarjnet delivers the full spectrum of managed IT services for UK businesses." />
+      </Helmet>
       <PageHero breadcrumb="Home > Services" heading="Everything your business needs. Nothing it doesn't." sub="Amarjnet delivers a complete managed IT portfolio. Purpose-built for UK SMBs and regulated industries. Every service is available standalone or as part of a fully managed monthly contract." />
 
       <div ref={sectionsRef}>
@@ -128,8 +137,8 @@ export default function Services() {
                     ))}
                   </ul>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Link to="/contact" className="btn-primary">Learn More</Link>
-                    <Link to="/contact" className="btn-outline">Get a Quote</Link>
+                    <Link to={service.slug} className="btn-primary">Learn More</Link>
+                    <Link to="/contact#it-review" className="btn-outline">Get a Quote</Link>
                   </div>
                 </div>
                 <div className={`service-image ${i % 2 === 1 ? 'lg:order-1' : ''} opacity-0`}>

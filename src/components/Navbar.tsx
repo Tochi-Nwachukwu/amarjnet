@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -8,10 +8,10 @@ const navLinks = [
     label: 'Services',
     href: '/services',
     dropdown: [
-      { label: 'Managed IT Support', href: '/services' },
-      { label: 'Cybersecurity', href: '/services' },
-      { label: 'Cloud & M365', href: '/services' },
-      { label: 'Networking', href: '/services' },
+      { label: 'Managed IT Support', href: '/services/managed-it-support' },
+      { label: 'Cybersecurity', href: '/services/cybersecurity' },
+      { label: 'Cloud & M365', href: '/services/cloud-microsoft-365' },
+      { label: 'Networking', href: '/services/networking-infrastructure' },
       { label: 'All Services', href: '/services' },
     ],
   },
@@ -19,16 +19,49 @@ const navLinks = [
     label: 'Industries',
     href: '/industries',
     dropdown: [
-      { label: 'Legal', href: '/industries' },
-      { label: 'Financial Services', href: '/industries' },
-      { label: 'Professional Services', href: '/industries' },
-      { label: 'SMBs', href: '/industries' },
+      { label: 'Legal', href: '/industries/legal' },
+      { label: 'Financial Services', href: '/industries/financial-services' },
+      { label: 'Professional Services', href: '/industries/professional-services' },
+      { label: 'SMBs', href: '/industries/smb' },
+      { label: 'All Industries', href: '/industries' },
     ],
   },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/about' },
-  { label: 'Resources', href: '/resources' },
-  { label: 'Client Portal', href: '/client-portal' },
+  {
+    label: 'About',
+    href: '/about',
+    dropdown: [
+      { label: 'Team', href: '/about#team' },
+      { label: 'Accreditations', href: '/about#accreditations' },
+      { label: 'Careers', href: '/careers' },
+    ],
+  },
+  {
+    label: 'Resources',
+    href: '/resources',
+    dropdown: [
+      { label: 'Blog', href: '/resources#blog' },
+      { label: 'Guides & Downloads', href: '/resources#downloads' },
+      { label: 'Case Studies', href: '/resources#case-studies' },
+    ],
+  },
+  {
+    label: 'Client Portal',
+    href: '/client-portal',
+    dropdown: [
+      { label: 'IT Support Desk', href: 'https://usehalo.com/halopsa/' },
+      { label: 'Systems Dashboard', href: 'https://www.connectwise.com/' },
+      { label: 'Microsoft 365', href: 'https://office.com' },
+      { label: 'Email & Messaging', href: 'https://outlook.office.com' },
+      { label: 'Client Onboarding', href: '/contact' },
+      { label: 'Training & Awareness', href: 'https://www.knowbe4.com/' },
+      { label: 'Documentation & KB', href: 'https://www.itglue.com/' },
+      { label: 'Billing & Invoices', href: 'https://www.xero.com/' },
+      { label: 'Password Manager', href: 'https://1password.com/' },
+      { label: 'Remote Access', href: 'https://www.connectwise.com/platform/rmm' },
+      { label: 'Client Portal Overview', href: '/client-portal' },
+    ],
+  },
 ];
 
 export default function Navbar() {
@@ -36,7 +69,19 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
+
+  const handleMouseEnter = (label: string) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpenDropdown(label);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 250);
+  };
 
   useEffect(() => {
     function onScroll() {
@@ -77,8 +122,8 @@ export default function Navbar() {
               <div
                 key={link.label}
                 className="relative"
-                onMouseEnter={() => link.dropdown && setOpenDropdown(link.label)}
-                onMouseLeave={() => setOpenDropdown(null)}
+                onMouseEnter={() => link.dropdown && handleMouseEnter(link.label)}
+                onMouseLeave={handleMouseLeave}
               >
                 <Link
                   to={link.href}
@@ -89,24 +134,43 @@ export default function Navbar() {
                 </Link>
                 {link.dropdown && openDropdown === link.label && (
                   <div
-                    className="absolute top-full left-0 mt-1 py-2 px-1 min-w-[200px]"
-                    style={{
-                      background: 'rgba(15, 43, 76, 0.95)',
-                      backdropFilter: 'blur(24px)',
-                      borderRadius: '16px',
-                      border: '1px solid rgba(0, 180, 216, 0.15)',
-                      boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
-                    }}
+                    className="absolute top-full left-0 pt-2 min-w-[220px]"
+                    onMouseEnter={() => handleMouseEnter(link.label)}
+                    onMouseLeave={handleMouseLeave}
                   >
-                    {link.dropdown.map((item, i) => (
-                      <Link
-                        key={i}
-                        to={item.href}
-                        className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    <div
+                      className="py-2 px-1"
+                      style={{
+                        background: 'rgba(15, 43, 76, 0.95)',
+                        backdropFilter: 'blur(24px)',
+                        borderRadius: '16px',
+                        border: '1px solid rgba(0, 180, 216, 0.15)',
+                        boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
+                      }}
+                    >
+                      {link.dropdown.map((item, i) => {
+                        const isExternal = item.href.startsWith('http');
+                        return isExternal ? (
+                          <a
+                            key={i}
+                            href={item.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                          >
+                            {item.label}
+                          </a>
+                        ) : (
+                          <Link
+                            key={i}
+                            to={item.href}
+                            className="block px-4 py-2 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-xl transition-all"
+                          >
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
               </div>
@@ -116,7 +180,7 @@ export default function Navbar() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <Link
-              to="/contact"
+              to="/contact#it-review"
               className="hidden sm:inline-flex btn-primary text-xs h-10 px-5"
             >
               Get a Free IT Review
@@ -155,21 +219,37 @@ export default function Navbar() {
                     </button>
                     {mobileDropdown === link.label && (
                       <div className="pl-4 pb-2 flex flex-col gap-1">
-                        {link.dropdown.map((item, i) => (
-                          <Link
-                            key={i}
-                            to={item.href}
-                            className="py-2 text-sm text-white/60 hover:text-[#1A5EAB] transition-colors"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                        {link.dropdown.map((item, i) => {
+                          const isExternal = item.href.startsWith('http');
+                          return isExternal ? (
+                            <a
+                              key={i}
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => setMobileOpen(false)}
+                              className="py-2 text-sm text-white/60 hover:text-[#1A5EAB] transition-colors"
+                            >
+                              {item.label}
+                            </a>
+                          ) : (
+                            <Link
+                              key={i}
+                              to={item.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="py-2 text-sm text-white/60 hover:text-[#1A5EAB] transition-colors"
+                            >
+                              {item.label}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
                   </>
                 ) : (
                   <Link
                     to={link.href}
+                    onClick={() => setMobileOpen(false)}
                     className="block py-3 text-lg font-medium text-white/90 hover:text-[#1A5EAB] transition-colors"
                   >
                     {link.label}
@@ -177,7 +257,11 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <Link to="/contact" className="btn-primary mt-4 text-center">
+            <Link 
+              to="/contact#it-review" 
+              onClick={() => setMobileOpen(false)}
+              className="btn-primary mt-4 text-center"
+            >
               Get a Free IT Review
             </Link>
           </nav>

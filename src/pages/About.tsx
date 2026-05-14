@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Target, Eye, Shield, TrendingUp, Heart, Award, Linkedin } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -47,6 +48,10 @@ export default function About() {
 
   return (
     <main>
+      <Helmet>
+        <title>About Amarjnet | UK Managed IT Solutions Provider</title>
+        <meta name="description" content="Meet the Amarjnet team — UK-based IT engineers, security specialists, and account managers committed to proactive, transparent managed IT services." />
+      </Helmet>
       <PageHero heading="Not just an IT company. We're Your IT team." sub="Amarjnet was founded on a simple idea: that UK businesses deserve IT support that's proactive, transparent, and genuinely invested in their success, not just a helpdesk that picks up when things go wrong." />
 
       {/* Our Story */}
@@ -91,7 +96,7 @@ export default function About() {
       </section>
 
       {/* Team */}
-      <section ref={teamRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
+      <section id="team" ref={teamRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="text-center mb-12">
             <h2 className="font-semibold mb-4" style={{ fontSize: 'clamp(28px, 3vw, 48px)', color: '#1A2332' }}>
@@ -104,11 +109,17 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {team.map((member, i) => (
               <div key={i} className="team-card glass-card p-8 text-center opacity-0">
-                <img src={member.image} alt={member.name} className="w-28 h-28 rounded-full mx-auto mb-5 object-cover" style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }} />
+                <img src={member.image} alt={`${member.name}, ${member.title}`} className="w-28 h-28 rounded-full mx-auto mb-5 object-cover" style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.1)' }} />
                 <h3 className="font-semibold text-lg mb-1" style={{ color: '#1A2332' }}>{member.name}</h3>
                 <p className="text-xs font-medium mb-3" style={{ color: '#1A5EAB' }}>{member.title}</p>
                 <p className="text-sm mb-4" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.5 }}>{member.bio}</p>
-                <a href="#" className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
+                <a 
+                  href="#" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-9 h-9 rounded-full" 
+                  style={{ background: 'rgba(0, 180, 216, 0.1)' }}
+                >
                   <Linkedin size={16} style={{ color: '#1A5EAB' }} />
                 </a>
               </div>
@@ -117,8 +128,26 @@ export default function About() {
         </div>
       </section>
 
+      {/* Careers Section */}
+      <section id="careers" className="py-20 lg:py-28" style={{ background: '#F4F6F8' }}>
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
+          <div className="glass-card p-10 lg:p-16 text-center">
+            <h2 className="font-semibold mb-6" style={{ fontSize: 'clamp(28px, 3vw, 48px)', color: '#1A2332' }}>
+              Ready to build the future of IT?
+            </h2>
+            <p className="text-lg max-w-[640px] mx-auto mb-10" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.6 }}>
+              We're always looking for talented engineers, security specialists, and client success managers who share our values of transparency and proactivity.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="mailto:careers@amarjnet.uk" className="btn-primary">View Open Roles</a>
+              <a href="/contact" className="btn-outline">Speak to Our Team</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Accreditations */}
-      <section className="py-12 lg:py-16" style={{ background: '#F4F6F8' }}>
+      <section id="accreditations" className="py-12 lg:py-16" style={{ background: '#fff' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
           <h3 className="font-semibold text-xl text-center mb-8" style={{ color: '#1A2332' }}>
             Certified. Accredited. Trusted.

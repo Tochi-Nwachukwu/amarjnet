@@ -7,9 +7,11 @@ import {
   Scale, Landmark, Briefcase, Users, ChevronDown,
   ArrowRight, Quote
 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 
 gsap.registerPlugin(ScrollTrigger);
+
 
 /* ─── Hero ─── */
 function HeroSection() {
@@ -34,18 +36,24 @@ function HeroSection() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video
-          key="/8439150-uhd_3840_2160_25fps.mp4"
+          key="hero-bg-video"
           autoPlay
           muted
           loop
           playsInline
+          preload="metadata"
           poster="/abstract-tech-bg.jpg"
           className="w-full h-full object-cover object-top"
         >
+          {/* Optimal Format (Requires you to compress your 4K mp4 to webm) */}
+          <source src="/hero-video-optimized.webm" type="video/webm" />
+          {/* Current Fallback Format */}
           <source src="/8439150-uhd_3840_2160_25fps.mp4" type="video/mp4" />
         </video>
+        {/* Mesh Overlay */}
+        <div className="absolute inset-0 opacity-40 z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(0, 180, 216, 0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#1A2332]/40" />
+        <div className="absolute inset-0 bg-[#0F2B4C]/60 z-[2]" />
       </div>
       <div ref={contentRef} className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 py-12 md:py-20 w-full -translate-y-6 md:-translate-y-12">
         <div ref={cardRef} className="glass-card-dark p-6 md:p-10 max-w-[600px] opacity-0">
@@ -65,7 +73,7 @@ function HeroSection() {
             Amarjnet is your dedicated managed IT partner, delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to UK businesses that demand more from their technology.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
-            <Link to="/contact" className="hero-cta btn-primary opacity-0">Get a Free IT Review</Link>
+            <Link to="/contact#it-review" className="hero-cta btn-primary opacity-0">Get a Free IT Review</Link>
             <Link to="/services" className="hero-cta btn-secondary opacity-0">Explore Our Services</Link>
           </div>
           <div className="hero-trust flex flex-wrap items-center gap-2 text-[13px] text-white/50 opacity-0">
@@ -143,11 +151,11 @@ function StatsSection() {
 
 /* ─── Services Overview ─── */
 const services = [
-  { icon: Monitor, title: 'Managed IT Support', headline: 'Always-on support. Zero surprises.', body: 'Proactive monitoring, fast helpdesk, and predictable fixed-fee contracts. IT that just works.' },
-  { icon: Shield, title: 'Cybersecurity', headline: 'Defend. Detect. Recover.', body: 'Layered security from endpoint to email, plus Cyber Essentials certification support.' },
-  { icon: Cloud, title: 'Cloud & Microsoft 365', headline: 'Move forward. Move to the cloud.', body: 'Microsoft 365, Azure, and cloud migrations managed by certified experts.' },
-  { icon: Network, title: 'Networking & Infrastructure', headline: 'The backbone of your business.', body: 'Firewalls, Wi-Fi, SD-WAN, and infrastructure built for performance and security.' },
-  { icon: FileCheck, title: 'Compliance', headline: 'Compliant by design.', body: 'GDPR, Cyber Essentials Plus, FCA-aligned IT. Built for regulated industries.' },
+  { icon: Monitor, title: 'Managed IT Support', headline: 'Always-on support. Zero surprises.', body: 'Proactive monitoring, fast helpdesk, and predictable fixed-fee contracts. IT that just works.', slug: '/services/managed-it-support' },
+  { icon: Shield, title: 'Cybersecurity', headline: 'Defend. Detect. Recover.', body: 'Layered security from endpoint to email, plus Cyber Essentials certification support.', slug: '/services/cybersecurity' },
+  { icon: Cloud, title: 'Cloud & Microsoft 365', headline: 'Move forward. Move to the cloud.', body: 'Microsoft 365, Azure, and cloud migrations managed by certified experts.', slug: '/services/cloud-microsoft-365' },
+  { icon: Network, title: 'Networking & Infrastructure', headline: 'The backbone of your business.', body: 'Firewalls, Wi-Fi, SD-WAN, and infrastructure built for performance and security.', slug: '/services/networking-infrastructure' },
+  { icon: FileCheck, title: 'Compliance', headline: 'Compliant by design.', body: 'GDPR, Cyber Essentials Plus, FCA-aligned IT. Built for regulated industries.', slug: '/services/cybersecurity' },
 ];
 
 function ServicesSection() {
@@ -183,7 +191,7 @@ function ServicesSection() {
               </div>
               <h3 className="font-semibold text-xl mb-2" style={{ color: '#1A2332' }}>{s.headline}</h3>
               <p className="text-sm mb-4" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.5 }}>{s.body}</p>
-              <Link to="/services" className="inline-flex items-center gap-1 text-sm font-medium hover:underline" style={{ color: '#1A5EAB' }}>
+              <Link to={s.slug} className="inline-flex items-center gap-1 text-sm font-medium hover:underline" style={{ color: '#1A5EAB' }}>
                 Learn More <ArrowRight size={14} />
               </Link>
             </div>
@@ -208,21 +216,11 @@ const features = [
 ];
 
 function WhySection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
-      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32" style={{ background: '#1A2332' }}>
+    <section className="py-20 lg:py-32" style={{ background: '#1A2332' }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          <div className="why-left lg:col-span-3 opacity-0">
+          <div className="why-left lg:col-span-3">
             <p className="eyebrow mb-3">Why Amarjnet</p>
             <h2 className="font-semibold text-white mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
               Proactive. Not reactive. That's the difference.
@@ -240,8 +238,14 @@ function WhySection() {
               ))}
             </div>
           </div>
-          <div className="why-right lg:col-span-2 opacity-0">
-            <img src="/coworkers-looking-monitor.jpg" alt="Technology visualization" className="w-full h-[540px] object-cover rounded-3xl" style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }} />
+          <div className="why-right lg:col-span-2">
+            <img 
+              src="/coworkers-looking-monitor.jpg" 
+              alt="Amarjnet engineers collaborating on IT solutions" 
+              className="w-full h-[540px] object-cover rounded-3xl" 
+              style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }} 
+              decoding="async"
+            />
           </div>
         </div>
       </div>
@@ -251,10 +255,10 @@ function WhySection() {
 
 /* ─── Industries ─── */
 const industries = [
-  { icon: Scale, name: 'Legal Firms', desc: 'SRA-compliant IT for law firms & chambers' },
-  { icon: Landmark, name: 'Financial Services', desc: 'FCA-ready infrastructure for IFAs & accountants' },
-  { icon: Briefcase, name: 'Professional Services', desc: 'Scalable IT for consultancies & agencies' },
-  { icon: Users, name: 'SMBs (1-50)', desc: 'Full managed IT from £45/seat/month' },
+  { icon: Scale, name: 'Legal Firms', desc: 'SRA-compliant IT for law firms & chambers', slug: '/industries/legal' },
+  { icon: Landmark, name: 'Financial Services', desc: 'FCA-ready infrastructure for IFAs & accountants', slug: '/industries/financial-services' },
+  { icon: Briefcase, name: 'Professional Services', desc: 'Scalable IT for consultancies & agencies', slug: '/industries/professional-services' },
+  { icon: Users, name: 'SMBs (1-50)', desc: 'Full managed IT from £45/seat/month', slug: '/industries/smb' },
 ];
 
 function IndustriesSection() {
@@ -280,7 +284,7 @@ function IndustriesSection() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {industries.map((ind, i) => (
-            <Link to="/industries" key={i} className="industry-card glass-card p-8 text-center group cursor-pointer hover:border-l-[3px] hover:border-l-[#00B4D8] hover:pl-[29px] transition-all opacity-0">
+            <Link to={ind.slug} key={i} className="industry-card glass-card p-8 text-center group cursor-pointer hover:border-l-[3px] hover:border-l-[#00B4D8] hover:pl-[29px] transition-all opacity-0">
               <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'rgba(0, 180, 216, 0.1)' }}>
                 <ind.icon size={24} style={{ color: '#1A5EAB' }} />
               </div>
@@ -303,12 +307,14 @@ const testimonials = [
 
 function TestimonialsSection() {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (paused) return;
     const interval = setInterval(() => setActive(a => (a + 1) % testimonials.length), 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [paused]);
 
   return (
     <section ref={sectionRef} className="py-20 lg:py-32" style={{ background: '#fff' }}>
@@ -316,7 +322,11 @@ function TestimonialsSection() {
         <h2 className="font-semibold text-center mb-12" style={{ fontSize: 'clamp(32px, 4vw, 56px)', color: '#1A2332', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
           Trusted by UK businesses.
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           {testimonials.map((t, i) => (
             <div key={i} className="glass-card p-8">
               <Quote size={32} style={{ color: '#1A5EAB' }} className="mb-4 opacity-50" />
@@ -356,7 +366,7 @@ function CTABanner() {
             Book a free, no-obligation IT Health Check with one of our engineers.
           </p>
         </div>
-        <Link to="/contact" className="shrink-0 inline-flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-200 bg-white hover:scale-[1.02] h-12 px-8" style={{ color: '#00B4D8' }}>
+        <Link to="/contact#it-review" className="shrink-0 inline-flex items-center justify-center rounded-full font-semibold text-sm transition-all duration-200 bg-white hover:scale-[1.02] h-12 px-8" style={{ color: '#00B4D8' }}>
           Book My Free IT Review
         </Link>
       </div>
@@ -399,6 +409,8 @@ function PartnersSection() {
                   src={p.logo} 
                   alt={p.name} 
                   className={`${(p as any).size || 'h-9 md:h-11'} w-auto object-contain mix-blend-multiply`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -416,6 +428,10 @@ function PartnersSection() {
 export default function Home() {
   return (
     <main>
+      <Helmet>
+        <title>Amarjnet | Proactive Managed IT Support & Cybersecurity UK</title>
+        <meta name="description" content="Amarjnet is your dedicated managed IT partner, delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to UK businesses." />
+      </Helmet>
       <HeroSection />
       <div className="relative z-10" style={{ background: '#fff' }}>
         <StatsSection />

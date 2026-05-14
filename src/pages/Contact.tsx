@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Check, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Check, Phone, Mail, MapPin, Clock, AlertCircle } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +17,8 @@ const checkItems = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,17 +29,43 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setError('Something went wrong. Please try again or call us directly.');
+      }
+    } catch {
+      setError('Network error. Please check your connection and try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
     <main>
+      <Helmet>
+        <title>Contact Us | Amarjnet Managed IT Services UK</title>
+        <meta name="description" content="Get in touch with Amarjnet for a free IT health check, managed IT support quote, or cybersecurity assessment. UK-based team, fast response." />
+      </Helmet>
       <PageHero heading="Let's talk about your IT." sub="Whether you're ready to switch MSP, want a second opinion on your current setup, or simply want to know what a managed IT service would cost, we're here for a no-pressure conversation." />
 
       {/* Form + Details */}
-      <section ref={formRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
+      <section id="it-review" ref={formRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Form */}
@@ -45,31 +74,33 @@ export default function Contact() {
                 {!submitted ? (
                   <>
                     <h2 className="font-semibold text-2xl mb-6" style={{ color: '#1A2332' }}>Get in touch</h2>
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form onSubmit={handleSubmit} className="space-y-5" name="contact" data-netlify="true" netlify-honeypot="bot-field">
+                      <input type="hidden" name="form-name" value="contact" />
+                      <p className="hidden"><label>Don't fill this out: <input name="bot-field" /></label></p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label htmlFor="fullName" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Full Name *</label>
-                          <input required id="fullName" aria-label="Full Name" type="text" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="John Smith" />
+                          <input required id="fullName" name="fullName" aria-label="Full Name" type="text" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="John Smith" />
                         </div>
                         <div>
                           <label htmlFor="businessName" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Business Name *</label>
-                          <input required id="businessName" aria-label="Business Name" type="text" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="Your Company Ltd" />
+                          <input required id="businessName" name="businessName" aria-label="Business Name" type="text" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="Your Company Ltd" />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label htmlFor="email" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Email Address *</label>
-                          <input required id="email" aria-label="Email Address" type="email" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="john@company.co.uk" />
+                          <input required id="email" name="email" aria-label="Email Address" type="email" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="john@company.co.uk" />
                         </div>
                         <div>
                           <label htmlFor="phone" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Phone Number</label>
-                          <input id="phone" aria-label="Phone Number" type="tel" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="+44 20 0000 0000" />
+                          <input id="phone" name="phone" aria-label="Phone Number" type="tel" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="+44 20 0000 0000" />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                           <label htmlFor="employees" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Number of Employees</label>
-                          <select id="employees" aria-label="Number of Employees" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
+                          <select id="employees" name="employees" aria-label="Number of Employees" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
                             <option>Select...</option>
                             <option>1–10</option>
                             <option>11–25</option>
@@ -80,7 +111,7 @@ export default function Contact() {
                         </div>
                         <div>
                           <label htmlFor="industry" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>Industry</label>
-                          <select id="industry" aria-label="Industry" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
+                          <select id="industry" name="industry" aria-label="Industry" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
                             <option>Select...</option>
                             <option>Legal</option>
                             <option>Financial Services</option>
@@ -93,11 +124,11 @@ export default function Contact() {
                       </div>
                       <div>
                         <label htmlFor="message" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>How can we help? *</label>
-                        <textarea required id="message" aria-label="How can we help?" rows={5} className="w-full px-4 py-3 rounded-2xl text-sm border outline-none focus:ring-2 transition-all resize-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="Tell us about your IT needs..." />
+                        <textarea required id="message" name="message" aria-label="How can we help?" rows={5} className="w-full px-4 py-3 rounded-2xl text-sm border outline-none focus:ring-2 transition-all resize-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }} placeholder="Tell us about your IT needs..." />
                       </div>
                       <div>
                         <label htmlFor="referral" className="block text-sm font-medium mb-1.5" style={{ color: '#1A2332' }}>How did you hear about us?</label>
-                        <select id="referral" aria-label="How did you hear about us?" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
+                        <select id="referral" name="referral" aria-label="How did you hear about us?" className="w-full h-12 px-4 rounded-2xl text-sm border outline-none focus:ring-2 transition-all appearance-none" style={{ borderColor: 'rgba(26,35,50,0.1)', background: '#F4F6F8', color: '#1A2332' }}>
                           <option>Select...</option>
                           <option>Google</option>
                           <option>LinkedIn</option>
@@ -106,10 +137,18 @@ export default function Contact() {
                         </select>
                       </div>
                       <div className="flex items-start gap-3">
-                        <input required id="privacy" type="checkbox" className="mt-1 w-4 h-4 rounded accent-[#1A5EAB]" />
+                        <input required id="privacy" name="privacy" type="checkbox" className="mt-1 w-4 h-4 rounded accent-[#1A5EAB]" />
                         <label htmlFor="privacy" className="text-sm" style={{ color: 'rgba(26,35,50,0.7)' }}>I agree to Amarjnet's Privacy Policy *</label>
                       </div>
-                      <button type="submit" className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm">Send My Enquiry</button>
+                      {error && (
+                        <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ background: 'rgba(239,68,68,0.1)', color: '#DC2626' }}>
+                          <AlertCircle size={16} className="shrink-0" />
+                          {error}
+                        </div>
+                      )}
+                      <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm disabled:opacity-60 disabled:cursor-not-allowed">
+                        {submitting ? 'Sending...' : 'Send My Enquiry'}
+                      </button>
                     </form>
                   </>
                 ) : (
@@ -173,12 +212,11 @@ export default function Contact() {
                     title="Amarjnet Office Location"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.073669455!2d-3.2098!3d55.9508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c79a2b7a89e1%3A0x0!2s5+South+Charlotte+Street%2C+Edinburgh+EH2+4AN!5e0!3m2!1sen!2suk!4v1"
                     width="100%"
-                    height="280"
+                    height="400"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="lg:h-[400px]"
                   />
                 </div>
               </div>
