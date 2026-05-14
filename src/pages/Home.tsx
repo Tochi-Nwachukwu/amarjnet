@@ -218,8 +218,8 @@ function WhySection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
-      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
+      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
+      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
