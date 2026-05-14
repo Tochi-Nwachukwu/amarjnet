@@ -214,11 +214,21 @@ const features = [
 ];
 
 function WhySection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.why-left', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
+      gsap.fromTo('.why-right', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 1.5, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 95%', toggleActions: 'play none none none' } });
+    }, sectionRef);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 lg:py-32" style={{ background: '#1A2332' }}>
+    <section ref={sectionRef} className="py-20 lg:py-32" style={{ background: '#1A2332' }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          <div className="why-left lg:col-span-3">
+          <div className="why-left lg:col-span-3 opacity-0">
             <p className="eyebrow mb-3">Why Amarjnet</p>
             <h2 className="font-semibold text-white mb-6" style={{ fontSize: 'clamp(32px, 4vw, 56px)', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
               Proactive. Not reactive. That's the difference.
@@ -236,12 +246,13 @@ function WhySection() {
               ))}
             </div>
           </div>
-          <div className="why-right lg:col-span-2">
+          <div className="why-right lg:col-span-2 opacity-0">
             <img 
-              src="/coworkers-looking-monitor.jpg" 
+              src="/coworkers-optimized.webp" 
               alt="Amarjnet engineers collaborating on IT solutions" 
               className="w-full h-[540px] object-cover rounded-3xl" 
               style={{ boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }} 
+              loading="lazy"
               decoding="async"
             />
           </div>
