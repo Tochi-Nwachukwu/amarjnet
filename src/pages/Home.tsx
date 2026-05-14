@@ -47,8 +47,6 @@ function HeroSection() {
         >
           {/* Optimal Format (Requires you to compress your 4K mp4 to webm) */}
           <source src="/hero-video-optimized.webm" type="video/webm" />
-          {/* Current Fallback Format */}
-          <source src="/8439150-uhd_3840_2160_25fps.mp4" type="video/mp4" />
         </video>
         {/* Mesh Overlay */}
         <div className="absolute inset-0 opacity-40 z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(0, 180, 216, 0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }} />
