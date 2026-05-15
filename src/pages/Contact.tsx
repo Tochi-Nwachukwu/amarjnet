@@ -17,7 +17,6 @@ const checkItems = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -152,8 +151,8 @@ ${message}`;
                           {error}
                         </div>
                       )}
-                      <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm disabled:opacity-60 disabled:cursor-not-allowed">
-                        {submitting ? 'Sending...' : 'Send My Enquiry'}
+                      <button type="submit" className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm">
+                        Send My Enquiry
                       </button>
                     </form>
                   </>
