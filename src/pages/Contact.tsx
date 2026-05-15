@@ -18,6 +18,7 @@ const checkItems = [
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [privacyChecked, setPrivacyChecked] = useState(false);
   const formRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -142,7 +143,7 @@ ${message}`;
                         </select>
                       </div>
                       <div className="flex items-start gap-3">
-                        <input required id="privacy" name="privacy" type="checkbox" className="mt-1 w-4 h-4 rounded accent-[#1A5EAB]" />
+                        <input required id="privacy" name="privacy" type="checkbox" checked={privacyChecked} onChange={(e) => setPrivacyChecked(e.target.checked)} className="mt-1 w-4 h-4 rounded accent-[#1A5EAB]" />
                         <label htmlFor="privacy" className="text-sm" style={{ color: 'rgba(26,35,50,0.7)' }}>I agree to Amarjnet's Privacy Policy *</label>
                       </div>
                       {error && (
@@ -151,7 +152,7 @@ ${message}`;
                           {error}
                         </div>
                       )}
-                      <button type="submit" className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm">
+                      <button type="submit" disabled={!privacyChecked} className="btn-primary w-full sm:w-auto uppercase tracking-wider text-sm disabled:opacity-60 disabled:cursor-not-allowed">
                         Send My Enquiry
                       </button>
                     </form>
