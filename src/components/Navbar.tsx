@@ -95,6 +95,17 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   const isHome = location.pathname === '/';
 
   return (
@@ -194,15 +205,18 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </header>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div
-          className="fixed inset-0 z-[55] lg:hidden overflow-y-auto"
-          style={{ background: 'rgba(26, 35, 50, 0.98)', top: '80px' }}
-        >
-          <nav className="flex flex-col p-6 gap-1">
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div
+            className="absolute top-full left-0 right-0 z-[55] lg:hidden overflow-y-auto"
+            style={{ 
+              background: 'rgba(26, 35, 50, 0.98)', 
+              height: 'calc(100dvh - 80px)',
+              borderTop: '1px solid rgba(255, 255, 255, 0.05)'
+            }}
+          >
+            <nav className="flex flex-col p-6 gap-1">
             {navLinks.map((link) => (
               <div key={link.label}>
                 {link.dropdown ? (
@@ -267,6 +281,7 @@ export default function Navbar() {
           </nav>
         </div>
       )}
+      </header>
     </>
   );
 }

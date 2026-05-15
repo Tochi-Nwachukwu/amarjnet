@@ -318,6 +318,14 @@ function TestimonialsSection() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (paused) return;
@@ -331,29 +339,46 @@ function TestimonialsSection() {
         <h2 className="font-semibold text-center mb-12" style={{ fontSize: 'clamp(32px, 4vw, 56px)', color: '#1A2332', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
           Trusted by UK businesses.
         </h2>
-        <div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        
+        <div 
+          className="overflow-hidden lg:overflow-visible"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
         >
-          {testimonials.map((t, i) => (
-            <div key={i} className="glass-card p-8">
-              <Quote size={32} style={{ color: '#1A5EAB' }} className="mb-4 opacity-50" />
-              <p className="text-base italic mb-6" style={{ color: '#1A2332', lineHeight: 1.6 }}>"{t.quote}"</p>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{t.name}</p>
-                  <p className="text-xs" style={{ color: 'rgba(26,35,50,0.6)' }}>{t.company}</p>
+          <div
+            className="flex gap-4 transition-transform duration-500 ease-in-out lg:grid lg:grid-cols-3 lg:gap-6"
+            style={{ transform: isMobile ? `translateX(calc(-${active * 100}% - ${active * 1}rem))` : 'none' }}
+          >
+            {testimonials.map((t, i) => (
+              <div key={i} className="w-full shrink-0 lg:w-auto">
+                <div className="glass-card p-8 h-full flex flex-col">
+                  <Quote size={32} style={{ color: '#1A5EAB' }} className="mb-4 opacity-50" />
+                  <p className="text-base italic mb-6" style={{ color: '#1A2332', lineHeight: 1.6 }}>"{t.quote}"</p>
+                  <div className="flex items-center justify-between mt-auto">
+                    <div>
+                      <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{t.name}</p>
+                      <p className="text-xs" style={{ color: 'rgba(26,35,50,0.6)' }}>{t.company}</p>
+                    </div>
+                    <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#1A5EAB' }}>{t.sector}</span>
+                  </div>
                 </div>
-                <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#1A5EAB' }}>{t.sector}</span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        {/* Mobile dots */}
+
+        {/* Mobile controls */}
         <div className="flex justify-center gap-2 mt-8 lg:hidden">
           {testimonials.map((_, i) => (
-            <button key={i} onClick={() => setActive(i)} className="w-2.5 h-2.5 rounded-full transition-colors" style={{ background: i === active ? '#00B4D8' : 'rgba(26,35,50,0.2)' }} />
+            <button 
+              key={i} 
+              onClick={() => setActive(i)} 
+              className="w-2.5 h-2.5 rounded-full transition-colors" 
+              style={{ background: i === active ? '#00B4D8' : 'rgba(26,35,50,0.2)' }}
+              aria-label={`Go to testimonial ${i + 1}`}
+            />
           ))}
         </div>
       </div>
