@@ -29,31 +29,37 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitting(true);
     setError(null);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as unknown as Record<string, string>).toString(),
-      });
+    const fullName = formData.get('fullName') as string;
+    const businessName = formData.get('businessName') as string;
+    const email = formData.get('email') as string;
+    const phone = formData.get('phone') as string;
+    const employees = formData.get('employees') as string;
+    const industry = formData.get('industry') as string;
+    const message = formData.get('message') as string;
+    const referral = formData.get('referral') as string;
 
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        setError('Something went wrong. Please try again or call us directly.');
-      }
-    } catch {
-      setError('Network error. Please check your connection and try again.');
-    } finally {
-      setSubmitting(false);
-    }
+    const subject = `Website Enquiry from ${fullName} - ${businessName}`;
+    const body = `Name: ${fullName}
+Business: ${businessName}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Employees: ${employees && employees !== 'Select...' ? employees : 'Not specified'}
+Industry: ${industry && industry !== 'Select...' ? industry : 'Not specified'}
+Referral: ${referral && referral !== 'Select...' ? referral : 'Not specified'}
+
+Message:
+${message}`;
+
+    const mailtoLink = `mailto:hello@amarjnet.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    setSubmitted(true);
   }
 
   return (
