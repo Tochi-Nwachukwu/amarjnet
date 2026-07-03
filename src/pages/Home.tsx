@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Monitor, Shield, Cloud, Network, FileCheck,
   Scale, Landmark, Briefcase, Users, ChevronDown,
-  ArrowRight, Quote
+  ArrowRight
 } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
@@ -45,13 +45,12 @@ function HeroSection() {
           poster="/abstract-tech-bg.jpg"
           className="w-full h-full object-cover object-top"
         >
-          {/* Optimal Format (Requires you to compress your 4K mp4 to webm) */}
-          <source src="/hero-video-optimized.webm" type="video/webm" />
+          <source src="/2-person-hero-vid.mp4" type="video/mp4" />
         </video>
         {/* Mesh Overlay */}
         <div className="absolute inset-0 opacity-40 z-[1] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(0, 180, 216, 0.15) 1px, transparent 0)', backgroundSize: '32px 32px' }} />
         {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#0F2B4C]/60 z-[2]" />
+        <div className="absolute inset-0 bg-[#0F2B4C]/30 z-[2]" />
       </div>
       <div ref={contentRef} className="relative z-10 max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12 py-12 md:py-20 w-full -translate-y-6 md:-translate-y-12">
         <div ref={cardRef} className="glass-card-dark p-6 md:p-10 max-w-[600px] opacity-0">
@@ -68,16 +67,16 @@ function HeroSection() {
             <span className="inline-block opacity-0">.</span>
           </h1>
           <p className="hero-sub text-white/80 text-base md:text-lg mb-8 max-w-[540px] opacity-0" style={{ lineHeight: 1.6 }}>
-            Amarjnet is your dedicated managed IT partner, delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to UK businesses that demand more from their technology.
+            Amarjnet is your dedicated managed IT partner, delivering proactive support, enterprise-grade cybersecurity, and seamless cloud services to businesses that demand more from their technology.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
             <Link to="/contact#it-review" className="hero-cta btn-primary opacity-0">Get a Free IT Review</Link>
             <Link to="/services" className="hero-cta btn-secondary opacity-0">Explore Our Services</Link>
           </div>
           <div className="hero-trust flex flex-wrap items-center gap-2 text-[13px] text-white/50 opacity-0">
-            <span>Microsoft Solutions Partner</span>
+            <span>Microsoft Partner</span>
             <span className="opacity-40">&#x2022;</span>
-            <span>Cyber Essentials Certified</span>
+            <span>Cisco Partner</span>
             <span className="opacity-40">&#x2022;</span>
             <span>ISO 27001 Aligned</span>
             <span className="opacity-40">&#x2022;</span>
@@ -97,10 +96,10 @@ function HeroSection() {
 function StatsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [counts, setCounts] = useState([0, 0, 0, 0]);
-  const targets = [30, 99.9, 100, 247];
+  const targets = [30, 99.9, 100, 24];
   const labels = ['P1 Incident Response', 'Uptime SLA Guarantee', 'UK-Based Support Team', 'Emergency Support Access'];
-  const prefixes = ['< ', '', '', ' / '];
-  const suffixes = [' Min', '%', '%', '7'];
+  const prefixes = ['< ', '', '', ''];
+  const suffixes = [' Min', '%', '%', '/7'];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -136,7 +135,7 @@ function StatsSection() {
           {targets.map((_, i) => (
             <div key={i} className={`text-center py-4 ${i < 3 ? 'lg:border-r lg:border-[#1A2332]/10' : ''}`}>
               <div className="font-bold" style={{ fontSize: 'clamp(36px, 4vw, 56px)', color: '#00B4DB', letterSpacing: '-0.02em' }}>
-                {prefixes[i]}{i === 3 ? '24' : counts[i]}{suffixes[i]}
+                {prefixes[i]}{counts[i]}{suffixes[i]}
               </div>
               <div className="text-sm mt-1" style={{ color: '#1A2332' }}>{labels[i]}</div>
             </div>
@@ -307,84 +306,7 @@ function IndustriesSection() {
   );
 }
 
-/* ─── Testimonials ─── */
-const testimonials = [
-  { quote: "Amarjnet transformed our IT overnight. We went from constant helpdesk calls and security worries to a business that just runs. Our team hasn't raised an IT issue in three months.", name: 'Operations Director', company: '38-seat Legal Practice, London', sector: 'Legal' },
-  { quote: "The cybersecurity audit alone was worth the contract. Amarjnet identified three critical gaps we didn't know existed. We're now Cyber Essentials Plus certified and genuinely feel secure.", name: 'Practice Manager', company: 'IFA Firm, Manchester', sector: 'Financial' },
-  { quote: "Switching to Amarjnet was the best business decision we made last year. Fixed pricing, a real account manager, and IT support that actually picks up the phone.", name: 'CEO', company: 'Marketing Agency, Birmingham', sector: 'Professional Services' },
-];
 
-function TestimonialsSection() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
-    const interval = setInterval(() => setActive(a => (a + 1) % testimonials.length), 5000);
-    return () => clearInterval(interval);
-  }, [paused]);
-
-  return (
-    <section ref={sectionRef} className="py-20 lg:py-32" style={{ background: '#fff' }}>
-      <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
-        <h2 className="font-semibold text-center mb-12" style={{ fontSize: 'clamp(32px, 4vw, 56px)', color: '#1A2332', lineHeight: 1.1, letterSpacing: '-0.01em' }}>
-          Trusted by UK businesses.
-        </h2>
-        
-        <div 
-          className="overflow-hidden lg:overflow-visible"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
-        >
-          <div
-            className="flex gap-4 transition-transform duration-500 ease-in-out lg:grid lg:grid-cols-3 lg:gap-6"
-            style={{ transform: isMobile ? `translateX(calc(-${active * 100}% - ${active * 1}rem))` : 'none' }}
-          >
-            {testimonials.map((t, i) => (
-              <div key={i} className="w-full shrink-0 lg:w-auto">
-                <div className="glass-card p-8 h-full flex flex-col">
-                  <Quote size={32} style={{ color: '#1A5EAB' }} className="mb-4 opacity-50" />
-                  <p className="text-base italic mb-6" style={{ color: '#1A2332', lineHeight: 1.6 }}>"{t.quote}"</p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <div>
-                      <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{t.name}</p>
-                      <p className="text-xs" style={{ color: 'rgba(26,35,50,0.6)' }}>{t.company}</p>
-                    </div>
-                    <span className="px-3 py-1 text-xs rounded-full font-medium whitespace-nowrap shrink-0" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#1A5EAB' }}>{t.sector}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Mobile controls */}
-        <div className="flex justify-center gap-2 mt-8 lg:hidden">
-          {testimonials.map((_, i) => (
-            <button 
-              key={i} 
-              onClick={() => setActive(i)} 
-              className="w-2.5 h-2.5 rounded-full transition-colors" 
-              style={{ background: i === active ? '#00B4D8' : 'rgba(26,35,50,0.2)' }}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 /* ─── Mid-Page CTA ─── */
 function CTABanner() {
@@ -410,17 +332,11 @@ function CTABanner() {
 
 /* ─── Partner Logos ─── */
 const partners = [
-  { name: 'Cyber Essentials', logo: '/CEC.png' },
-  { name: 'Cyber Essentials Plus', logo: '/CEP.png' },
-  { name: 'ConnectWise', logo: '/connectwise-hd.png' },
-  { name: 'NinjaRMM', logo: '/ninja-hd.png' },
-  { name: 'Acronis', logo: '/Acronis.svg' },
-  { name: 'Veeam', logo: '/veeam-hd.png' },
-  { name: 'Huntress', logo: '/huntress-hd.png', size: 'h-14 md:h-16' },
-  { name: 'Sophos', logo: '/sophos-hd.png' },
-  { name: 'Fortinet', logo: '/fortinet-hd.png' },
-  { name: 'ICO', logo: '/ico-hd.png' },
+  { name: 'Westcon-Comstor', logo: '/westcon-comstor-hd.svg' },
+  { name: 'Pax8', logo: '/pax8-hd.svg' },
+  { name: 'Cisco', logo: '/cisco-hd.svg' },
   { name: 'Microsoft', logo: '/microsoft-hd.png' },
+  { name: 'ICO', logo: '/ico-hd.png' },
 ];
 
 function PartnersSection() {
@@ -431,8 +347,7 @@ function PartnersSection() {
           Our Technology Partners
         </p>
         <div className="relative overflow-hidden no-scrollbar">
-          <div className="flex items-center gap-x-16 animate-infinite-scroll w-max py-4">
-            {/* Duplicate the array to create seamless loop */}
+          <div className="flex items-center gap-x-20 animate-infinite-scroll w-max py-4">
             {[...partners, ...partners].map((p, i) => (
               <div
                 key={i}
@@ -442,7 +357,7 @@ function PartnersSection() {
                 <img 
                   src={p.logo} 
                   alt={p.name} 
-                  className={`${(p as any).size || 'h-9 md:h-11'} w-auto object-contain mix-blend-multiply`}
+                  className="h-10 md:h-12 w-auto object-contain mix-blend-multiply"
                   loading="lazy"
                   decoding="async"
                 />
@@ -472,7 +387,7 @@ export default function Home() {
         <ServicesSection />
         <WhySection />
         <IndustriesSection />
-        <TestimonialsSection />
+
         <CTABanner />
         <PartnersSection />
       </div>

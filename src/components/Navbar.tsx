@@ -124,7 +124,7 @@ export default function Navbar() {
         <div className="max-w-[1280px] mx-auto h-full flex items-center justify-between px-4 md:px-6 lg:px-12">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <img src="/amarjnet_logo_white.svg" alt="amarjnet logo" className="h-8 w-auto object-contain" />
+            <img src="/amarjnet_logo_white.svg" alt="amarjnet logo" className="h-10 w-auto object-contain" />
           </Link>
 
           {/* Desktop Nav */}

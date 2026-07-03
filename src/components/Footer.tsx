@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 const serviceLinks = [
   { label: 'Managed IT Support', href: '/services/managed-it-support' },
@@ -45,12 +45,6 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
                 <Linkedin size={18} />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
-                <Twitter size={18} />
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-[#00B4D8] transition-colors">
-                <Youtube size={18} />
               </a>
             </div>
           </div>
@@ -102,7 +96,7 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-white/10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/40 text-center md:text-left">
-              &copy; 2026 Amarjnet Limited. Registered in Scotland, United Kingdom. Company Number: SC444231. Registered Office: 5 South Charlotte Street, Edinburgh, EH2 4AN.
+              &copy; 2026 Amarjnet Limited. Registered in England and Wales, United Kingdom. Company Number: SC444231. Registered Office: 167-169 Great Portland Street, 5th Floor, London, W1W 5PF.
             </p>
             <div className="flex items-center gap-3 text-xs text-white/40">
               <Link to="/" className="hover:text-white/70 transition-colors">Privacy Policy</Link>

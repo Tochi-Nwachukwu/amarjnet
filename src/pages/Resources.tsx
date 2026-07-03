@@ -27,11 +27,6 @@ const downloads = [
   { title: 'Amarjnet IT Services Overview', desc: 'A complete overview of our managed IT services and pricing tiers.', pages: 'Brochure' },
 ];
 
-const caseStudies = [
-  { sector: 'Legal', client: 'London Law Firm (38 seats)', challenge: 'Constant IT issues, slow response times, and security concerns were disrupting client work.', outcome: '40% reduction in helpdesk tickets; Cyber Essentials Plus achieved in 6 weeks' },
-  { sector: 'Financial', client: 'IFA Firm, Manchester (22 seats)', challenge: 'Needed FCA-compliant IT infrastructure and better cybersecurity posture.', outcome: 'Full FCA-aligned environment; zero security incidents in 12 months' },
-  { sector: 'Professional Services', client: 'Marketing Agency, Birmingham (45 seats)', challenge: 'Rapid growth causing IT scalability issues and inconsistent support.', outcome: 'Seamless scaling to 60 seats; 99.9% uptime maintained throughout' },
-];
 
 export default function Resources() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -125,38 +120,6 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section id="case-studies" className="py-20 lg:py-28" style={{ background: '#fff' }}>
-        <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
-          <h2 className="font-semibold mb-10" style={{ fontSize: 'clamp(28px, 3vw, 48px)', color: '#1A2332' }}>
-            Client Success Stories
-          </h2>
-          <div className="space-y-6">
-            {caseStudies.map((cs, i) => (
-              <div key={i} className="glass-card p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-                  <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-medium mb-2" style={{ background: 'rgba(0, 180, 216, 0.1)', color: '#00B4D8' }}>{cs.sector}</span>
-                    <p className="font-semibold text-sm" style={{ color: '#1A2332' }}>{cs.client}</p>
-                  </div>
-                  <div className="lg:col-span-3">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'rgba(26,35,50,0.5)' }}>Challenge</p>
-                        <p className="text-sm" style={{ color: 'rgba(26,35,50,0.7)', lineHeight: 1.5 }}>{cs.challenge}</p>
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#00B4D8' }}>Outcome</p>
-                        <p className="text-sm font-medium" style={{ color: '#1A2332', lineHeight: 1.5 }}>{cs.outcome}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
       {/* FAQ Section */}
       <section id="faq" className="py-20 lg:py-28" style={{ background: '#F4F6F8' }}>
         <div className="max-w-[800px] mx-auto px-4 md:px-6">

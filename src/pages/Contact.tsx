@@ -208,15 +208,15 @@ ${message}`;
                     </div>
                     <h4 className="font-semibold text-sm" style={{ color: '#1A2332' }}>Office</h4>
                   </div>
-                  <p className="text-sm ml-12" style={{ color: '#1A2332' }}>5 South Charlotte Street</p>
-                  <p className="text-sm ml-12" style={{ color: 'rgba(26,35,50,0.6)' }}>Edinburgh, EH2 4AN</p>
+                  <p className="text-sm ml-12" style={{ color: '#1A2332' }}>167-169 Great Portland Street, 5th Floor</p>
+                  <p className="text-sm ml-12" style={{ color: 'rgba(26,35,50,0.6)' }}>London, W1W 5PF</p>
                 </div>
 
                 {/* Google Maps Embed */}
                 <div className="glass-card overflow-hidden" style={{ borderRadius: '20px' }}>
                   <iframe
                     title="Amarjnet Office Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2234.073669455!2d-3.2098!3d55.9508!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4887c79a2b7a89e1%3A0x0!2s5+South+Charlotte+Street%2C+Edinburgh+EH2+4AN!5e0!3m2!1sen!2suk!4v1"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.8!2d-0.1419!3d51.5207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ad5c24f4167%3A0x0!2s167-169+Great+Portland+Street%2C+London+W1W+5PF!5e0!3m2!1sen!2suk!4v1"
                     width="100%"
                     height="400"
                     style={{ border: 0 }}

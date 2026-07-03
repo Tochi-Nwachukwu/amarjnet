@@ -25,13 +25,8 @@ export default function TopBar() {
             <Mail size={12} />
             support@amarjnet.uk
           </span>
-          <span className="hidden md:inline opacity-50">|</span>
-          <span className="flex items-center gap-1.5">
-            <Clock size={12} />
-            Mon--Fri 08:00--18:00
-          </span>
-          <span className="hidden sm:inline opacity-50">|</span>
-          <span className="hidden sm:inline font-semibold">Emergency: 24/7</span>
+
+
         </div>
         <button
           className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white md:hidden"

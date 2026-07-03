@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 const plans = [
   {
     name: 'Essentials',
-    price: '£45',
+    price: '',
     ideal: 'SMBs under 15 seats',
     features: [
       'RMM monitoring & alerting',
@@ -25,7 +25,7 @@ const plans = [
   },
   {
     name: 'Business',
-    price: '£75',
+    price: '',
     ideal: '15-50 seat businesses',
     features: [
       'Everything in Essentials, PLUS:',
@@ -40,7 +40,7 @@ const plans = [
   },
   {
     name: 'Enterprise+',
-    price: '£110',
+    price: '',
     ideal: 'Regulated sectors',
     features: [
       'Everything in Business, PLUS:',
@@ -124,9 +124,9 @@ export default function Pricing() {
     <main>
       <Helmet>
         <title>Managed IT Pricing | Amarjnet IT Solutions UK</title>
-        <meta name="description" content="Transparent per-seat managed IT pricing from £45/month. Compare Essentials, Business, and Enterprise+ plans. No hidden fees." />
+        <meta name="description" content="Transparent managed IT pricing for UK businesses. Compare Essentials, Business, and Enterprise+ plans. Request a tailored quote today." />
       </Helmet>
-      <PageHero heading="Transparent pricing. No hidden extras." sub="All plans are per-seat, per-month. Minimum 12-month initial term, then rolling monthly. Prices shown exclude VAT." />
+      <PageHero heading="Transparent pricing. No hidden extras." sub="All plans are per-seat, per-month. Minimum 12-month initial term, then rolling monthly. Request a quote for pricing tailored to your business." />
 
       {/* Pricing Cards */}
       <section ref={cardsRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
@@ -147,8 +147,7 @@ export default function Pricing() {
                   <h3 className="font-semibold text-xl mb-1" style={{ color: '#1A2332' }}>{plan.name}</h3>
                   <p className="text-xs mb-4" style={{ color: 'rgba(26,35,50,0.5)' }}>Ideal for: {plan.ideal}</p>
                   <div className="flex items-baseline gap-1">
-                    <span className="font-bold text-3xl" style={{ color: '#1A2332' }}>{plan.price}</span>
-                    <span className="text-sm" style={{ color: 'rgba(26,35,50,0.6)' }}>/ seat / month</span>
+                    <span className="font-bold text-2xl" style={{ color: '#00B4D8' }}>Request a Quote</span>
                   </div>
                 </div>
                 <ul className="space-y-3 mb-8 flex-grow">
@@ -159,7 +158,7 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/contact" className="btn-primary w-full text-center">Get Started</Link>
+                <Link to="/contact" className="btn-primary w-full text-center">Request a Quote</Link>
               </div>
             ))}
           </div>

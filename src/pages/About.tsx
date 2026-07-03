@@ -24,11 +24,7 @@ const team = [
 
 const accreditations = [
   { name: 'Microsoft Solutions Partner', image: '/microsoft-solutions-partner-security.svg' },
-  { name: 'Cyber Essentials', image: '/Cyber-essentials.svg' },
-  { name: 'Cyber Essentials Plus', image: '/Cyber-E-Plus.svg' },
-  { name: 'ISO 27001 Aligned', image: '/ISO_27001.png' },
   { name: 'ICO Registered', image: '/ico-hd.png' },
-  { name: 'IASME Consortium', image: '/IASME-hd.svg' }
 ];
 
 export default function About() {
@@ -95,7 +91,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team - commented out for now
       <section id="team" ref={teamRef} className="py-20 lg:py-28" style={{ background: '#fff' }}>
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-12">
           <div className="text-center mb-12">
@@ -127,6 +123,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Careers Section */}
       <section id="careers" className="py-20 lg:py-28" style={{ background: '#F4F6F8' }}>
@@ -152,7 +149,7 @@ export default function About() {
           <h3 className="font-semibold text-xl text-center mb-8" style={{ color: '#1A2332' }}>
             Certified. Accredited. Trusted.
           </h3>
-          <div className="flex items-center justify-between gap-4 md:gap-8 overflow-x-auto no-scrollbar py-4">
+          <div className="flex items-center justify-center gap-12 md:gap-20 py-4">
             {accreditations.map((a, i) => (
               <div
                 key={i}
