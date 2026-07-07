@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Phone, Clock, Mail } from 'lucide-react';
+import { X, Phone, Mail } from 'lucide-react';
 
 export default function TopBar() {
   const [dismissed, setDismissed] = useState(false);

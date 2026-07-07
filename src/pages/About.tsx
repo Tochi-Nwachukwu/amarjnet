@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Target, Eye, Shield, TrendingUp, Heart, Award, Linkedin } from 'lucide-react';
+import { Target, Eye, Shield, TrendingUp, Heart, Award } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import PageHero from '@/components/PageHero';
 
@@ -16,11 +16,13 @@ const values = [
   { icon: Award, name: 'Accountable Always', desc: 'We own our mistakes and fix them fast.' },
 ];
 
+/* Team data - uncomment when re-enabling team section
 const team = [
   { name: 'James Anderson', title: 'Managing Director', bio: 'James brings 12 years of enterprise IT and cybersecurity experience, specialising in Microsoft 365 and cloud infrastructure.', image: '/team-1.jpg' },
   { name: 'Sarah Mitchell', title: 'Head of Client Services', bio: 'Sarah leads our client success team with a background in professional services IT and a passion for exceptional support.', image: '/team-2.jpg' },
   { name: 'Tom Edwards', title: 'Lead Security Engineer', bio: 'Tom is our cybersecurity specialist, holding CISSP and multiple Microsoft security certifications.', image: '/team-3.jpg' },
 ];
+*/
 
 const accreditations = [
   { name: 'Microsoft Solutions Partner', image: '/microsoft-solutions-partner-security.svg' },
