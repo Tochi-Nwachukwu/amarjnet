@@ -41,9 +41,13 @@ function HeroSection() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/abstract-tech-bg.jpg"
-          className="w-full h-full object-cover object-top"
+          className="w-full h-full object-cover object-top transition-opacity duration-700"
+          style={{ opacity: 0 }}
+          onCanPlayThrough={(e) => { (e.target as HTMLVideoElement).style.opacity = '1'; }}
+          // @ts-expect-error fetchPriority is valid but not yet in React's types
+          fetchPriority="high"
         >
           <source src="/2-person-hero-vid.mp4" type="video/mp4" />
         </video>
